@@ -15,6 +15,9 @@ class CreateInternamentosTable extends Migration
     {
         Schema::create('internamentos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('paciente_id')->constrained('pacientes');
+            $table->foreignId('quarto_de_internamentos_id')->constrained('quarto_de_internamentos');
+            $table->string('medico_respons');
             $table->timestamps();
         });
     }

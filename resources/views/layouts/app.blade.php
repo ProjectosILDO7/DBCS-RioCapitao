@@ -18,8 +18,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="css/css/all.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+
     <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     @livewireStyles  
 </head>
@@ -80,9 +83,9 @@
         <!-- User Menu-->
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
           <ul class="dropdown-menu settings-menu dropdown-menu-right">
-            <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> Definições</a></li>
-            <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i> Perfil</a></li>
-            <li><a class="dropdown-item" href="page-login.html"><i class="fa fa-sign-out fa-lg"></i> Saír</a></li>
+            <li><a class="dropdown-item" href="{{ route('page-user') }}"><i class="fa fa-cog fa-lg"></i> Definições</a></li>
+            <li><a class="dropdown-item" href="{{ route('page-user') }}"><i class="fa fa-user fa-lg"></i> Perfil</a></li>
+            <li><a class="dropdown-item" href="{{ route('login.sair') }}"><i class="fa fa-sign-out fa-lg"></i> Saír</a></li>
           </ul>
         </li>
       </ul>
@@ -93,10 +96,18 @@
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 
     <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="{{ asset('img/CoraçãoSaúde.png') }}" alt="User Image" width="40%" height="40%">
-        <div>
-          <p class="app-sidebar__user-name">Ildo Cuema</p>
-          <p class="app-sidebar__user-designation">desenvolvedor</p>
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="{{ asset('img/CoraçãoSaúde.png') }}" alt="User Image" width="20%" height="40%">
+        <div class="small">
+          <p class="app-sidebar__user-name">{{ auth()->user()->name }}</p>
+          <p class="app-sidebar__user-designation">
+            @if (auth()->user()->admin === 1)
+                {{ 'Admin' }}
+            @elseif(auth()->user()->admin === 2)
+                {{ 'Medico/a' }}
+            @elseif(auth()->user()->admin === 3)
+                {{ 'Sou cliente' }}
+            @endif
+          </p>
         </div>
       </div>
 
@@ -111,22 +122,51 @@
           </ul> --}}
         </li>
         <li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Estatística</span></a></li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-database"></i><span class="app-menu__label">Cadastro</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="form-components.html"><i class="icon fa fa-graduation-cap"></i> Especialidade</a></li>
-            <li><a class="treeview-item" href="form-custom.html"><i class="icon fa fa-user-md"></i> Médico</a></li>
-            <li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-solid fa-bed"></i> Paciente</a></li>
-            <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-hospital-o" aria-hidden="true"></i> Quartos de internamento</a></li>
-            <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-clock-o"></i> Horas de visita</a></li>
-          </ul>
-        </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-table"></i><span class="app-menu__label">Tabelas Informativa</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="table-basic.html"><i class="icon fa fa-stethoscope"></i> Consultas</a></li>
-            <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-medkit"></i> Internamentos</a></li>
-            <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-heartbeat"></i> Actividades Médicas</a></li>
-          </ul>
-        </li>
+      
+        @if(auth()->user()->admin === 1)
+          <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-database"></i><span class="app-menu__label">Cadastro</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+              <li><a class="treeview-item" href="form-components.html"><i class="icon fa fa-graduation-cap"></i> Especialidade</a></li>
+              <li><a class="treeview-item" href="form-custom.html"><i class="icon fa fa-user-md"></i> Médico</a></li>
+              <li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-solid fa-bed"></i> Paciente</a></li>
+              <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-hospital-o" aria-hidden="true"></i> Quartos de internamento</a></li>
+              <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-clock-o"></i> Horas de visita</a></li>
+            </ul>
+          </li>
+          
+          <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-table"></i><span class="app-menu__label">Tabelas Informativa</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+              <li><a class="treeview-item" href="table-basic.html"><i class="icon fa fa-stethoscope"></i> Consultas</a></li>
+              <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-medkit"></i> Internamentos</a></li>
+              <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-heartbeat"></i> Actividades Médicas</a></li>
+            </ul>
+          </li>
+
+       @endif 
+        
+      @if(auth()->user()->admin === 2)
+      
+          <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-table"></i><span class="app-menu__label">Actividades Médicas</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+              <li><a class="treeview-item" href="table-basic.html"><i class="icon fa fa-stethoscope"></i> Marcar disponibilidade</a></li>
+              <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-medkit"></i> Vêr meus paciente</a></li>
+            </ul>
+          </li>
+
+      @endif
+
+      @if(auth()->user()->admin === 3)
+      
+          <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-table"></i><span class="app-menu__label">Actividades</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+              <li><a class="treeview-item" href="table-basic.html"><i class="icon fa fa-stethoscope"></i> Vér disponibilidade dos médicos</a></li>
+              <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-medkit"></i> Marcar consultas</a></li>
+            </ul>
+          </li>
+
+      @endif
+        
+
         {{-- <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Pages</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="blank-page.html"><i class="icon fa fa-circle-o"></i> Blank Page</a></li>
@@ -157,6 +197,7 @@
     <script src="js/main.js"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="js/plugins/pace.min.js"></script>
+
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="js/plugins/chart.js"></script>
     <script type="text/javascript">

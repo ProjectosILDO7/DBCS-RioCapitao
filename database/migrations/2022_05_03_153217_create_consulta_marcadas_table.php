@@ -15,6 +15,7 @@ class CreateConsultaMarcadasTable extends Migration
     {
         Schema::create('consulta_marcadas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('consulta_id')->constrained('consulta_marcadas');
             $table->timestamps();
         });
     }

@@ -14,8 +14,8 @@ class CreateMedicoEspecialidadesTable extends Migration
     public function up()
     {
         Schema::create('medico_especialidades', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->foreignId('medico_id')->constrained('medicos');
+            $table->foreignId('especialidade_id')->constrained('especialidades');
         });
     }
 

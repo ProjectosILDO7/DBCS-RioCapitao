@@ -15,6 +15,9 @@ class CreateQuartoDeInternamentosTable extends Migration
     {
         Schema::create('quarto_de_internamentos', function (Blueprint $table) {
             $table->id();
+            $table->string('num_quart');
+            $table->string('num_cama');
+            $table->string('piso')->nullable();
             $table->timestamps();
         });
     }

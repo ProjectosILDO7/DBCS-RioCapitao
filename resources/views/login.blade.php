@@ -19,28 +19,40 @@
           <img src="{{ asset('img/CoraçãoSaúde.png') }}" alt="" width="50%" height="50%">
       </div>
       <div class="login-box">
-        <form class="login-form" action="index.html">
+        <form class="login-form" action="{{ route('logar.admin') }}" method="POST">
+
+          @csrf
+           {{-- Mensagem de erro --}}
+          <span class="small text-danger">{{ $erroEmail ?? null }}</span>
+
           <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>ENTRAR</h3>
           <div class="form-group">
             <label class="control-label">USUÁRIO</label>
-            <input class="form-control" type="text" placeholder="E-mail" autofocus>
+            <input class="form-control" name="user" type="text" placeholder="E-mail" autofocus value="{{ old('user') }}">
+            @error('user')
+              <span class="small text-danger">{{ $message }}</span>
+            @enderror
           </div>
+
           <div class="form-group">
             <label class="control-label">SENHA</label>
-            <input class="form-control" type="password" placeholder="Palavra passe">
+            <input class="form-control" name="password" type="password" placeholder="Palavra passe">
+            @error('password')
+              <span class="small text-danger">{{ $message }}</span>
+            @enderror
           </div>
           <div class="form-group">
             <div class="utility">
               <div class="animated-checkbox">
                 <label>
-                  <input type="checkbox"><span class="label-text">Lembrar</span>
+                  <input type="checkbox" name='lembrar'><span class="label-text">Lembrar</span>
                 </label>
               </div>
               <p class="semibold-text mb-2"><a href="#" data-toggle="flip">Esqueceu a Senha ?</a></p>
             </div>
           </div>
           <div class="form-group btn-container">
-            <button class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>ENTRAR</button>
+            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>ENTRAR</button>
           </div>
         </form>
         <form class="forget-form" action="index.html">
