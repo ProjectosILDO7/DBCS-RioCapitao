@@ -13,10 +13,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-    //    $this->app->bind(
-    //        'App\contrato\interfaceLogin', 
-    //        'App\repositorio\loginRepos\loginRepositorio',
-    //    );
+       $this->app->bind(
+           'app\contracts\perfilContracts', 
+           
+           'App\repos\perfiRepos'
+       );
     }
 
     /**

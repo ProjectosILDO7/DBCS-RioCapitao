@@ -19,7 +19,7 @@
             <div class="col-md-6 col-lg-3">
             <div class="widget-small primary coloured-icon text-center"><i class="icon fa fa-user-md fa-3x"></i>
                 <div class="info">
-                <h4>Médios</h4>
+                <h4>Médicos</h4>
                 <p><b>5</b></p>
                 </div>
             </div>

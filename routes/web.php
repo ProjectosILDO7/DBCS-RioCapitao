@@ -42,22 +42,10 @@ Route::middleware(['middleware'=>'admin'])->group(function(){
 
     //configuracao de pagina
     Route::get('/page-user', [homeController::class, 'definPage'])->name('page-user');
+    Route::post('/def_perfil', [homeController::class, 'store'])->name('salvar.perfil');
+
 
 
 
 });
 
-
-// Grupo de Route para Medico
-Route::middleware(['middleware'=>'medico'])->group(function(){
-
-
-    
-});
-
-
-// Grupo de Route para Paciente
-Route::middleware(['middleware'=>'paciente'])->group(function(){
-
-    
-});
