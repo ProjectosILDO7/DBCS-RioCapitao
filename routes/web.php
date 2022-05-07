@@ -42,10 +42,7 @@ Route::middleware(['middleware'=>'admin'])->group(function(){
 
     //configuracao de pagina
     Route::get('/page-user', [homeController::class, 'definPage'])->name('page-user');
-    Route::post('/def_perfil', [homeController::class, 'store'])->name('salvar.perfil');
-
-
-
+    Route::post('/def_perfil', [homeController::class, 'create'])->name('salvar.perfil');
 
 });
 

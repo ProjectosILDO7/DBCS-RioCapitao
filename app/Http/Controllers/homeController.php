@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use app\contracts\contracto;
-use app\contracts\perfilContracts;
-use App\Http\Requests\perfilRequestAdmin;
-use App\repos\perfiRepos;
+use App\repositorios\contratos\modelContrato;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
 class homeController extends Controller
 {
+    protected $model;
+
+    public function __construct(modelContrato $con )
+    {
+       $this->model=$con; 
+    }
     public function definPage(){
         
         $nome = Auth()->user()->name;
@@ -24,14 +25,17 @@ class homeController extends Controller
         //
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $data = $request->all();
+        $data['password']=bcrypt($request->password);
+        $req= $this->model->store($data);
+        dd($req);
     }
 
-    public function store(contracto $contrato)
+    public function store()
     {
-        return $contrato->getAll();
+        
         
     }
 

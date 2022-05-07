@@ -1,5 +1,7 @@
 <?php
-namespace App\repositorios;
+namespace App\repositorios\elequente;
+
+use Illuminate\Http\Request;
 
 abstract class servicos {
 
@@ -15,19 +17,22 @@ abstract class servicos {
     }
 
     public function getAll(){
-
+        
     }
     public function get($id){
-
+        
+    }
+    public function edit(){
+        
     }
     public function store(array $dados){
-
+       return $this->model->create($dados);  
     }
-    public function edit(array $dados, $id){
-
+    public function delete($id){
+        
     }
-    public function updade(array $dados, $id){
-
+    public function update(array $dados, $id){
+        
     }
 
 

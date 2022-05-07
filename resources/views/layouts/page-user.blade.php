@@ -103,7 +103,7 @@
                     <div class="row mb-4">
                       <div class="col-md-4">
                         <label>Primeiro nome</label>
-                        <input class="form-control" name="primeiroNome" type="text" value="{{ $nome ?? null| old('nome') }}">
+                        <input class="form-control" name="name" type="text" value="{{ $nome ?? null| old('nome') }}">
                       </div>
                       <div class="col-md-4">
                         <label>Último nome</label>
@@ -125,7 +125,7 @@
                       <div class="clearfix"></div>
                       <div class="col-md-8 mb-4">
                         <label>Nova senha</label>
-                        <input class="form-control" name="senha" type="text">
+                        <input class="form-control" name="password" type="text">
                       </div>
 
                       <div class="clearfix"></div>
@@ -133,6 +133,13 @@
                         <label>Repetir senha</label>
                         <input class="form-control" name="senha2" type="text">
                       </div>
+
+                      <div class="clearfix hiden"></div>
+                      <div class="col-md-8 mb-4">
+                        <label>Painel</label>
+                        <input class="form-control" name="admin" type="text">
+                      </div>
+
                     </div>
                     <div class="row mb-10">
                       <div class="col-md-12">
