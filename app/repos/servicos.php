@@ -1,7 +1,7 @@
 <?php
 namespace App\repos;
 
-abstract class perfiReposAbstract {
+abstract class servicos {
 
     protected $model;
 

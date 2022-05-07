@@ -2,8 +2,8 @@
 
 namespace app\contracts;
 
-interface perfilContracts {
-
+interface contractoModels {
+    
     public function getAll();
     public function get($id);
     public function store(array $dados);

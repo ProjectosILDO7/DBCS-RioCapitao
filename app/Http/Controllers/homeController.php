@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use app\contracts\contracto;
 use app\contracts\perfilContracts;
 use App\Http\Requests\perfilRequestAdmin;
 use App\repos\perfiRepos;
@@ -28,9 +29,9 @@ class homeController extends Controller
         //
     }
 
-    public function store(perfilContracts $perfiRepos)
+    public function store(contracto $contrato)
     {
-        return $perfiRepos->getAll();
+        return $contrato->getAll();
         
     }
 
