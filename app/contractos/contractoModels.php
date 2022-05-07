@@ -1,6 +1,6 @@
 <?php
 
-namespace app\contracts;
+namespace app\contratos;
 
 interface contractoModels {
     

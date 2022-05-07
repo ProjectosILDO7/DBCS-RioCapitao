@@ -1,5 +1,5 @@
 <?php
-namespace App\repos;
+namespace App\repositorios;
 
 use app\contracts\contractoModels;
 use App\Models\User;
