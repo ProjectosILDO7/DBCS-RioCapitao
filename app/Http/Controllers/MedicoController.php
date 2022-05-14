@@ -2,84 +2,96 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\medicoRequest;
+use App\Models\especialidade;
 use App\Models\medico;
-use Illuminate\Http\Request;
+use App\Models\User;
+use App\repositorios\especialidade\contratos\especInterface;
+use App\repositorios\medico\contratos\medicoInterface;
 
 class MedicoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    protected $model;
+    public function __construct(medicoInterface $esp)
+    {
+        $this->model = $esp;
+    }
+    
     public function index()
     {
-        //
+      //
+      $med = $this->model->getList();
+      return view('layouts.medico.medico', compact('med'));  
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(especInterface $esp)
+    {
+       $esp = $esp->getList();
+       $key=rand(200221,20112578);
+       return view('layouts.medico.formMedico', compact('key', 'esp')); 
+    }
+
+    public function store(medicoRequest $request)
+    {   
+        $key=bcrypt($request->password);
+        $dataUser=User::create([
+            'name' =>$request->nome,
+            'email'=>$request->email,
+            'admin'=>'2',
+            'tel'=>$request->telefone,
+            'email_verified_at'=>now(),
+            'password' => $key,
+        ]);
+        if(!$dataUser){
+            return redirect()->back();
+        }
+        $data=$request->only('nome', 'telefone', 'email');
+        $esp=$this->model->create($data);
+        $esp->especialidades()->sync($request->especialidade);
+        return redirect()->route('medicoList'); 
+    
+    }
+
+    public function show($id)
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function edit(especInterface $esp, $id)
     {
         //
+        $medico=$this->model->get($id);
+        $espMedico = $this->model->get($id)->especialidades;
+        $esp = $esp->getList();
+        return view('layouts.medico.editMedico', compact('medico', 'espMedico', 'esp'));
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\medico  $medico
-     * @return \Illuminate\Http\Response
-     */
-    public function show(medico $medico)
+    public function update(medicoRequest $request, $id)
     {
-        //
+        $medico = new medico();
+        $findMedico = $medico->find($id);
+        $up = $findMedico->update($request->only('nome', 'telefone', 'email'));
+       
+        if($request->has('especialidade')){
+            $findMedico->especialidades()->sync($request->especialidade);
+        }
+        if(!$up){
+            return redirect()->back();
+        }
+        return redirect()->route('medicoList');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\medico  $medico
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(medico $medico)
-    {
-        //
+    public function destroy($id)
+    {   if($id)
+           $medico=$this->model->get($id);
+           return view('layouts.medico.formAlertas', compact('medico'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\medico  $medico
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, medico $medico)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\medico  $medico
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(medico $medico)
-    {
-        //
+    public function deletar($id){
+        if($this->model->deletar($id));
+            return redirect()->route('medicoList');
+        return redirect()->back();
     }
 }

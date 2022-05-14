@@ -23,23 +23,48 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'primeiroNome'=>'bail|required',
-            'ultimoNome'=>'bail|required',
-            'email'=>'bail|required|unique',
-            'tel'=>'bail|required',
-            'senha'=>'bail|required|max:8|min:6',
+        $id = $this->id ?? '';
+
+        $rules = [
+            'name' => 'bail|required',
+            'email' => [
+                'bail',
+                'required',
+                "unique:users,email,{$id},id" // validação de email com o mesmo form de cadastrar e editar
+            ],
+            'tel' => [
+                'bail',
+                'nullable',
+                "unique:users,tel,{$id},id" // validação de tel com o mesmo form de cadastrar e editar
+            ],
+            'password' => 'bail|required|max:16|min:6',
+            'senha2' => 'bail|required|same:password',
+            'admin' => 'bail|required'
         ];
+
+        if ($this->method('PUT')) {
+
+            $rules['password']=[
+                'bail',
+                'nullable',
+                'max:16',
+                'min:6',
+            ];
+        }
+        
+        return $rules;
     }
 
-    public function message()
+    public function messages()
     {
         return [
-            'primeiroNome.required'=>'O registo do primeiro nome é obrigatório',
+            'name.required'=>'O registo do primeiro nome é obrigatório',
             'ultimoNome.required'=>'O registo do segundo nome é obrigatório',
             'email.required'=>'O registo do e-mail é obrigatório',
             'tel.required'=>'O registo do Telemóvel é obrigatório',
-            'senha.required'=>'O registo da senha é obrigatório',
+            'password.required'=>'O registo da senha é obrigatório',
+            'senha2.required' => 'Esta senha inserida não está igual a anterior',
+            'admin.required' => 'Informe a designção para o sistema'
         ];
     }
 }

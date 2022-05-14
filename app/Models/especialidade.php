@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class especialidade extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'nome_especialidade'
+    ];
+
+    public function medicos(){
+        return $this->belongsTo(medico::class);
+    }
 }

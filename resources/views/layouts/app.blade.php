@@ -18,13 +18,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
 
     <!-- Font-icon css-->
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-    
-    @livewireStyles  
+    <link rel="stylesheet" type="text/css" href="{{ asset('font-awesome/css/all.css') }}"> 
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
 </head>
   <body class="app sidebar-mini">
 
@@ -83,7 +81,7 @@
         <!-- User Menu-->
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
           <ul class="dropdown-menu settings-menu dropdown-menu-right">
-            <li><a class="dropdown-item" href="{{ route('page-user') }}"><i class="fa fa-cog fa-lg"></i> Definições</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fa fa-cog fa-lg"></i> Eventos</a></li>
             <li><a class="dropdown-item" href="{{ route('page-user') }}"><i class="fa fa-user fa-lg"></i> Perfil</a></li>
             <li><a class="dropdown-item" href="{{ route('login.sair') }}"><i class="fa fa-sign-out fa-lg"></i> Saír</a></li>
           </ul>
@@ -126,8 +124,8 @@
         @if(auth()->user()->admin === 1)
           <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-database"></i><span class="app-menu__label">Cadastro</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-              <li><a class="treeview-item" href="form-components.html"><i class="icon fa fa-graduation-cap"></i> Especialidade</a></li>
-              <li><a class="treeview-item" href="form-custom.html"><i class="icon fa fa-user-md"></i> Médico</a></li>
+              <li><a class="treeview-item" href="{{ route('user.especialidade') }}"><i class="icon fa fa-graduation-cap"></i> Especialidade</a></li>
+              <li><a class="treeview-item" href="{{ route('medicoList') }}"><i class="icon fa fa-user-md"></i> Médico</a></li>
               <li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-solid fa-bed"></i> Paciente</a></li>
               <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-hospital-o" aria-hidden="true"></i> Quartos de internamento</a></li>
               <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-clock-o"></i> Horas de visita</a></li>
@@ -191,15 +189,16 @@
 
 
     <!-- Essential javascripts for application to work-->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('fontawesome/js/fontawesome.main.js') }}}"></script>
     <!-- The javascript plugin to display page loading on top-->
-    <script src="js/plugins/pace.min.js"></script>
+    <script src="{{ asset('js/plugins/pace.min.js') }}"></script>
 
     <!-- Page specific javascripts-->
-    <script type="text/javascript" src="js/plugins/chart.js"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/chart.js') }}"></script>
     <script type="text/javascript">
       var data = {
       	labels: ["January", "February", "March", "April", "May"],
@@ -258,6 +257,53 @@
       	ga('send', 'pageview');
       }
     </script>
-    @livewireScripts
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="{{ asset('js/plugins/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/dataTables.bootstrap.min.js') }}"></script>
+    <script type="text/javascript">$('#sampleTable').DataTable();</script>
+    <!-- Google analytics script-->
+    <script type="text/javascript">
+      if(document.location.hostname == 'pratikborsadiya.in') {
+      	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      	ga('create', 'UA-72504830-1', 'auto');
+      	ga('send', 'pageview');
+      }
+    </script>
+
+<script type="text/javascript" src="{{ asset('js/plugins/bootstrap-notify.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/plugins/sweetalert.min.js') }}"></script>
+<script type="text/javascript">
+  $('#demoNotify').click(function(){
+    $.notify({
+      title: "Actualização completa : ",
+      message: "Something cool is just updated!",
+      icon: 'fa fa-check' 
+    },{
+      type: "info"
+    });
+  });
+  $('#apagar').click(function(){
+    swal({
+      title: "Tens a certeza ?",
+      text: "Após ter apagado não tem como reverter, somente realizar um outro cadastro!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sim, Apagar isso!",
+      cancelButtonText: "Não, cancelar acção!",
+      closeOnConfirm: false,
+      closeOnCancel: false
+    }, function(isConfirm) {
+      if (isConfirm) {
+        swal("Apagado com sucesso!", "O seu pedido foi apagado com sucesso.", "success");
+      } else {
+        swal("Cancelado", "O seu pedido foi cancelado com sucesso:)", "error");
+      }
+    });
+  });
+</script>
+
   </body>
 </html>
