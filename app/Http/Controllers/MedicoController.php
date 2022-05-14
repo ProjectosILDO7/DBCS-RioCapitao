@@ -43,19 +43,22 @@ class MedicoController extends Controller
             'email_verified_at'=>now(),
             'password' => $key,
         ]);
+        $userId = $dataUser->id;
         if(!$dataUser){
             return redirect()->back();
         }
         $data=$request->only('nome', 'telefone', 'email');
+        $data['user_id']=$userId;
         $esp=$this->model->create($data);
         $esp->especialidades()->sync($request->especialidade);
         return redirect()->route('medicoList'); 
     
     }
 
-    public function show($id)
+    public function infoMedico($id)
     {
-        //
+        $info=$this->model->infoMedico($id);
+        return view('layouts.medico.infoMedico', compact('info'));
     }
 
     public function edit(especInterface $esp, $id)

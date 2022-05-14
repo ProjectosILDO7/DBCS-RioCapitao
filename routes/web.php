@@ -67,6 +67,6 @@ Route::middleware(['middleware'=>'auth'])->group(function(){
     Route::put('/updateMedico/{id}', [MedicoController::class, 'update'])->name('updateMedico');
     Route::get('/deleteMedico/{id}', [MedicoController::class, 'destroy'])->name('medicoDelete');
     Route::post('/apagarMedic/{id}', [MedicoController::class, 'deletar'])->name('apagarMed');
-    Route::get('/apagarMedic/{id}', [MedicoController::class, 'info'])->name('medicoInfo');
+    Route::get('/apagarMedic/{id}', [MedicoController::class, 'infoMedico'])->name('medicoInfo');
 });
 

@@ -24,8 +24,9 @@ abstract class medicoAbestract{
     public function create(array $dados){
           return $this->model->create($dados);   
     }
-    public function edit($id){
-
+    
+    public function infoMedico($id){
+        return $this->model->with('especialidades')->findOrFail($id);
     }
     public function update(array $dados, $id){
       

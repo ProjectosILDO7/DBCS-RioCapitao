@@ -26,6 +26,7 @@ class medicoRequest extends FormRequest
         $id=$this->id;
         
         $rules = [
+            'user_id'=>['bail', 'required'],
             'nome'=>['bail', 'required', 'max:45'],
             'telefone'=>['bail', 'required', 'max:9'],
             'email'=>[

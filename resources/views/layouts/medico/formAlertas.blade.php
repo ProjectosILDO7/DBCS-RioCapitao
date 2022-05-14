@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="form-group col-6">
-                            <a class="btn btn-block btn-primary btn-sm text-center" href="{{ route('user.especialidade') }}" dismiss><i class="fa fa-close"> Cancelar</i></a>
+                            <a class="btn btn-block btn-primary btn-sm text-center" href="{{ route('medicoList') }}" dismiss><i class="fa fa-close"> Cancelar</i></a>
                         </div>
                     </div>
                 </form>
