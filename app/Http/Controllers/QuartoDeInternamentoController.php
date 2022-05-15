@@ -2,84 +2,67 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\quartoDeInternamento;
-use Illuminate\Http\Request;
+use App\Http\Requests\quartoRequest;
+use App\repositorios\quarto\contratos\quartoInterface;
+
 
 class QuartoDeInternamentoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $model;
+    public function __construct(quartoInterface $esp)
+    {
+        $this->model = $esp;
+    }
+    
     public function index()
     {
-        //
+      //
+      $quartos = $this->model->getList();
+      return view('layouts.quarto.quarto', compact('quartos'));  
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+    
+       return view('layouts.quarto.formQuarto'); 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(quartoRequest $request)
+    {   
+        $this->model->create($request->all());
+        return redirect()->route('quartoList'); 
+    
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\quartoDeInternamento  $quartoDeInternamento
-     * @return \Illuminate\Http\Response
-     */
-    public function show(quartoDeInternamento $quartoDeInternamento)
+    public function edit($id)
     {
         //
+        $quarto=$this->model->get($id);
+        return view('layouts.quarto.editQuarto', compact('quarto'));
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\quartoDeInternamento  $quartoDeInternamento
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(quartoDeInternamento $quartoDeInternamento)
+    public function update(quartoRequest $request, $id)
     {
-        //
+        
+        $up = $this->model->get($id)->update($request->all());
+       
+        if(!$up){
+            return redirect()->back();
+        }
+        return redirect()->route('quartoList');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\quartoDeInternamento  $quartoDeInternamento
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, quartoDeInternamento $quartoDeInternamento)
-    {
-        //
+    public function destroy($id)
+    {   if($id)
+           $quarto=$this->model->get($id);
+           return view('layouts.quarto.formAlertas', compact('quarto'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\quartoDeInternamento  $quartoDeInternamento
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(quartoDeInternamento $quartoDeInternamento)
+    public function deletar($id)
     {
-        //
+            $this->model->deletar($id);
+            return redirect()->route('quartoList');
+   
     }
 }

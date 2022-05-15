@@ -21,6 +21,20 @@ class AppServiceProvider extends ServiceProvider
             'App\repositorios\medico\contratos\medicoInterface',
             'App\repositorios\medico\eloquente\medicoRepositorio',
          );
+         $this->app->bind(
+            'App\repositorios\paciente\contratos\pacienteInterface',
+            'App\repositorios\paciente\eloquente\pacienteRepositorio',
+         );
+
+         $this->app->bind(
+            'App\repositorios\quarto\contratos\quartoInterface',
+            'App\repositorios\quarto\eloquente\quartoRepositorio',
+         );
+
+         $this->app->bind(
+            'App\repositorios\horaVisita\contratos\horaVisitaInterface',
+            'App\repositorios\horaVisita\eloquente\horaVisitaRepositorio',
+         );
     }
 
     /**

@@ -126,9 +126,9 @@
             <ul class="treeview-menu">
               <li><a class="treeview-item" href="{{ route('user.especialidade') }}"><i class="icon fa fa-graduation-cap"></i> Especialidade</a></li>
               <li><a class="treeview-item" href="{{ route('medicoList') }}"><i class="icon fa fa-user-md"></i> Médico</a></li>
-              <li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-solid fa-bed"></i> Paciente</a></li>
-              <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-hospital-o" aria-hidden="true"></i> Quartos de internamento</a></li>
-              <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-clock-o"></i> Horas de visita</a></li>
+              <li><a class="treeview-item" href="{{ route('pacienteList') }}"><i class="icon fa fa-solid fa-bed"></i> Paciente</a></li>
+              <li><a class="treeview-item" href="{{ route('quartoList') }}"><i class="icon fa fa-hospital-o" aria-hidden="true"></i> Quartos de internamento</a></li>
+              <li><a class="treeview-item" href="{{ route('horaVisitaList') }}"><i class="icon fa fa-time"></i> Horas de visita</a></li>
             </ul>
           </li>
           
@@ -146,7 +146,7 @@
       
           <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-table"></i><span class="app-menu__label">Actividades Médicas</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-              <li><a class="treeview-item" href="table-basic.html"><i class="icon fa fa-stethoscope"></i> Marcar disponibilidade</a></li>
+              <li><a class="treeview-item" href="{{ route('mostraDisponibilidade') }}"><i class="icon fa fa-stethoscope"></i> Marcar disponibilidade</a></li>
               <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-medkit"></i> Vêr meus paciente</a></li>
             </ul>
           </li>

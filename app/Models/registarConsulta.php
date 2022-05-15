@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class registarConsulta extends Model
 {
     use HasFactory;
+    
 }

@@ -1,10 +1,11 @@
 <?php
-namespace app\repositorios\medico\eloquente;
+namespace App\repositorios\horaVisita\eloquente;
 
 
 use Illuminate\Database\Eloquent\Model;
 
-abstract class medicoAbestract{
+
+abstract class horaVisitaAbestract{
 
     protected $mode;
 
@@ -25,11 +26,11 @@ abstract class medicoAbestract{
     }
     
     public function infoMedico($id){
-        return $this->model->with('especialidades')->findOrFail($id);
+        return $this->model->findOrFail($id);
     }
     public function update(array $dados, $id){
       
-        return $this->model->with('especialidades')->find($id)->update($dados);
+        return $this->model->find($id)->update($dados);
     }
     public function deletar($id){
         if(!$this->model->findOrfail($id))

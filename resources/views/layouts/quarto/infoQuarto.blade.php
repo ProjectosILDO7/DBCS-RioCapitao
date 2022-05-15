@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Especialidade')
+@section('title', 'Quartos')
 
 @section('content')
        
@@ -20,15 +20,15 @@
         {{-- Corpo da pagina --}}
         <div class="card">
             <div class="card-header">
-                Detalhes de : <span class="font-weight-bold">{{ $info->nome }}</span>
+                Detalhes de : <span class="font-weight-bold">{{ $quarto->nome }}</span>
             </div>
             <div class="card-body">
 
-                <span class="text-primary">Especialidade:</span>
+                <span class="text-primary">Quarto:</span>
                 <ul>
-                    @foreach ($info->especialidades as $ep)
+                    {{-- @foreach ($quarto->quartos as $ep)
                         <li>{{ $ep->nome_especialidade }}</li>
-                    @endforeach
+                    @endforeach --}}
                 </ul>
                 
             </div>

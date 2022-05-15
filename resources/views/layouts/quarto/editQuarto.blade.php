@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Especialidade')
+@section('title', 'Editar Quarto')
 
 @section('content')
        
         {{-- Titulo da pagina --}}
         <div class="app-title">  
             <div>
-            <h1><i class="fa fa-dashboard"></i> Detalhes </h1>
+            <h1><i class="fa fa-dashboard"></i> Editar dados do quarto</h1>
             <p>Centro de Saúde - Rio Capitão</p>
             </div>
             <ul class="app-breadcrumb breadcrumb">
@@ -20,19 +20,14 @@
         {{-- Corpo da pagina --}}
         <div class="card">
             <div class="card-header">
-                Detalhes de : <span class="font-weight-bold">{{ $info->nome }}</span>
+                Editar quarto
             </div>
             <div class="card-body">
-
-                <span class="text-primary">Especialidade:</span>
-                <ul>
-                    @foreach ($info->especialidades as $ep)
-                        <li>{{ $ep->nome_especialidade }}</li>
-                    @endforeach
-                </ul>
-                
+                <form method="post" action="{{ route('updateQuarto', $quarto->id ?? Null) }}">
+                        @method('put')
+                        @include('includes.includeQuarto.formQuarto')
+                </form>
             </div>
         </div>
-       
-
+        
 @endsection

@@ -2,84 +2,76 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\horaVisitaRequest;
 use App\Models\horasDeVisita;
-use Illuminate\Http\Request;
+use App\repositorios\horaVisita\contratos\horaVisitaInterface;
+
 
 class HorasDeVisitaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $model;
+    public function __construct(horaVisitaInterface $esp)
+    {
+        $this->model = $esp;
+    }
+    
     public function index()
     {
-        //
+      //
+      $horas = $this->model->getList();
+      return view('layouts.horasVisita.horaVisita', compact('horas'));  
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+    
+       return view('layouts.horasVisita.formHoraVisita'); 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(horaVisitaRequest $request)
+    {   
+       
+        $horaVis=horasDeVisita::where('hora_visita', $request->hora_visita)->where('dia_visita', $request->dia_visita)->where('periodo', $request->periodo)->get();
+        $total=$horaVis->count();
+        if($total==0){
+            $this->model->create($request->all());
+            return redirect()->route('horaVisitaList');
+        }
+        $sms='Essa hora de visita já está marcada no sistema';
+        return view('layouts.horasVisita.formHoraVisita', compact('sms'));
+         
+    
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\horasDeVisita  $horasDeVisita
-     * @return \Illuminate\Http\Response
-     */
-    public function show(horasDeVisita $horasDeVisita)
+    public function edit($id)
     {
         //
+        $hora=$this->model->get($id);
+        return view('layouts.horaVisita.editHotaVisirta', compact('hora'));
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\horasDeVisita  $horasDeVisita
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(horasDeVisita $horasDeVisita)
+    public function update(horaVisitaRequest $request, $id)
     {
-        //
+        
+        $up = $this->model->get($id)->update($request->all());
+       
+        if(!$up){
+            return redirect()->back();
+        }
+        return redirect()->route('horaVisitaList');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\horasDeVisita  $horasDeVisita
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, horasDeVisita $horasDeVisita)
-    {
-        //
+    public function destroy($id)
+    {   if($id)
+           $horaDelete=$this->model->get($id);
+           return view('layouts.horasVisita.formAlertas', compact('horaDelete'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\horasDeVisita  $horasDeVisita
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(horasDeVisita $horasDeVisita)
+    public function deletar($id)
     {
-        //
+            $this->model->deletar($id);
+            return redirect()->route('horaVisitaList');
+   
     }
 }

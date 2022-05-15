@@ -73,6 +73,19 @@ class MedicoController extends Controller
 
     public function update(medicoRequest $request, $id)
     {
+        $idPacUser = $this->model->get($id)->user_id;
+        $upUser = new User();
+        $userPac = $upUser->find($idPacUser);
+        $key = $upUser['password']=bcrypt($request->password);
+        $userPac->update([
+            'name'=>$request->nome,
+            'email'=>$request->email,
+            'admin' => '3',
+            'tel'=>$request->telemovel,
+            'email_verified_at'=>now(),
+            'password'=>$key,
+        ]);
+
         $medico = new medico();
         $findMedico = $medico->find($id);
         $up = $findMedico->update($request->only('nome', 'telefone', 'email'));
@@ -93,8 +106,9 @@ class MedicoController extends Controller
     }
 
     public function deletar($id){
-        if($this->model->deletar($id));
-            return redirect()->route('medicoList');
-        return redirect()->back();
+            $idPacUser = $this->model->get($id)->user_id;
+            $upUser = new User();
+            $userPac = $upUser->find($idPacUser)->delete();
+            return redirect()->route('medicoList'); 
     }
 }
