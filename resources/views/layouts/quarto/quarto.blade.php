@@ -20,7 +20,7 @@
         {{-- Corpo da pagina --}}
         <div class="card">
             <div class="card-header">
-                Pacientes
+                Quartos
             </div>
             <div class="card-body">
                 @include('includes.includeQuarto.quartoLista')

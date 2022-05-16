@@ -16,7 +16,7 @@ class CreateHorasDeVisitasTable extends Migration
         Schema::create('horas_de_visitas', function (Blueprint $table) {
             $table->id();
             $table->string('hora_visita', 5);
-            $table->string('dia_visita', 11);
+            $table->string('dia_visita', 13);
             $table->string('periodo', 5);
             $table->timestamps();
         });

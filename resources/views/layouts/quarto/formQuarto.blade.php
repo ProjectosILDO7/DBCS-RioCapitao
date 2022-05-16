@@ -20,7 +20,7 @@
         {{-- Corpo da pagina --}}
         <div class="card">
             <div class="card-header">
-                Paciente
+                Quartos
             </div>
             <div class="card-body">
                 <form method="post" action="{{ route('quarto.addQuarto') }}">
