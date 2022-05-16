@@ -18,6 +18,8 @@ class CreateDisponibMedicoConsultasTable extends Migration
             $table->foreignId('medico_id')->constrained('disponib_medico_consultas');
             $table->string('medico');
             $table->string('data_dispon');
+            $table->string('hora_inicial');
+            $table->string('hora_final');
             $table->string('especialidade');
             $table->timestamps();
         });

@@ -17,9 +17,15 @@ class DisponibMedicoConsultaController extends Controller
     
     public function index()
     {
-        $userId=Auth()->user()->id;
-        dd($m = $userId->userMedico());
-        return view('layouts.medicoUser.disponibilidadeMedica');
+        $userId= new User();
+        $idUser = Auth()->user()->id;
+
+        $m = $userId->find($idUser);
+        $medicoId=$m->userMedico->id;
+        $medicoEsp=$this->model->get($medicoId);
+        //dd($especialidades = $medicoEsp->especialidades->nome_especialidade);
+    $especialidades = $medicoEsp->especialidades;
+        return view('layouts.medicoUser.disponibilidadeMedica', compact('especialidades', 'medicoEsp'));
     }
 
     

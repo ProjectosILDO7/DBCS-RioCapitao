@@ -22,7 +22,38 @@
         <div class="card">
             <div class="card-header">Marque sua disponibilidade de consulta</div>
             <div class="card-body">
-                
+                <form method="post" action="">
+                    <div class="row">
+                    
+                        <div class="form-group col-3">
+                            <label class="text-secondary">Data de disponibilidade de consulta</label>
+                            <input type="date" class="form-control" name="data">
+                        </div>
+
+                        <div class="form-group col-3">
+                            <label class="text-secondary">Hora inicial</label>
+                            <input type="time" class="form-control" name="hora_inicial">
+                        </div>
+
+                        <div class="form-group col-3">
+                            <label class="text-secondary">Hora final</label>
+                            <input type="time" class="form-control" name="hora_final">
+                        </div>
+                        
+                        <div class="form-group col-3">
+                            <label class="text-secondary">Marcar para especialidades de:</label>
+                            <select class="form-control" name="especialidade" id="">
+                                @foreach ($especialidades as $p)
+                                    <option>{{ $p->nome_especialidade }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group col-3">
+                            <button class="btn btn-primary"><i class="fa fa-check"></i> Marcar</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 

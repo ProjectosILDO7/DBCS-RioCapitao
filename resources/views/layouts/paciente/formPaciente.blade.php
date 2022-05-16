@@ -7,7 +7,7 @@
         {{-- Titulo da pagina --}}
         <div class="app-title">  
             <div>
-            <h1><i class="fa fa-dashboard"></i> Médico</h1>
+            <h1><i class="fa fa-dashboard"></i> Paciente</h1>
             <p>Centro de Saúde - Rio Capitão</p>
             </div>
             <ul class="app-breadcrumb breadcrumb">
