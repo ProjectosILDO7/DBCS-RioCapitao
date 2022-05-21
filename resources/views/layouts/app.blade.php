@@ -132,9 +132,9 @@
             </ul>
           </li>
           
-          <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-table"></i><span class="app-menu__label">Tabelas Informativa</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-table"></i><span class="app-menu__label">Actividades</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-              <li><a class="treeview-item" href="table-basic.html"><i class="icon fa fa-stethoscope"></i> Consultas</a></li>
+          <li><a class="treeview-item" href="{{ route('listConsulta') }}"><i class="icon fa fa-stethoscope"></i> Consultas</a></li>
               <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-medkit"></i> Internamentos</a></li>
               <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-heartbeat"></i> Actividades Médicas</a></li>
             </ul>
@@ -200,6 +200,10 @@
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="{{ asset('js/plugins/chart.js') }}"></script>
     <script type="text/javascript">
+    <script type="text/javascript" src="js/plugins/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="js/plugins/select2.min.js"></script>
+    <script type="text/javascript" src="js/plugins/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="js/plugins/dropzone.js"></script>
       var data = {
       	labels: ["January", "February", "March", "April", "May"],
       	datasets: [
@@ -256,6 +260,48 @@
       	ga('create', 'UA-72504830-1', 'auto');
       	ga('send', 'pageview');
       }
+    </script>
+
+    {{-- Select2 --}}
+    <script type="text/javascript">
+      $('#sl').on('click', function(){
+      	$('#tl').loadingBtn();
+      	$('#tb').loadingBtn({ text : "Signing In"});
+      });
+      
+      $('#el').on('click', function(){
+      	$('#tl').loadingBtnComplete();
+      	$('#tb').loadingBtnComplete({ html : "Sign In"});
+      });
+      
+      $('#demoDate').datepicker({
+      	format: "dd/mm/yyyy",
+      	autoclose: true,
+      	todayHighlight: true
+      });
+      
+      $('#pacienteSelect').select2();
+    </script>
+
+    {{-- Select2 --}}
+    <script type="text/javascript">
+      $('#sl').on('click', function(){
+      	$('#tl').loadingBtn();
+      	$('#tb').loadingBtn({ text : "Signing In"});
+      });
+      
+      $('#el').on('click', function(){
+      	$('#tl').loadingBtnComplete();
+      	$('#tb').loadingBtnComplete({ html : "Sign In"});
+      });
+      
+      $('#demoDate').datepicker({
+      	format: "dd/mm/yyyy",
+      	autoclose: true,
+      	todayHighlight: true
+      });
+      
+      $('#medicoSelect').select2();
     </script>
     <!-- Data table plugin-->
     <script type="text/javascript" src="{{ asset('js/plugins/jquery.dataTables.min.js') }}"></script>

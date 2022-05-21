@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class registarConsulta extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'paciente_id',
+        'disponib_medico_consulta_id'
+    ];
     
 }

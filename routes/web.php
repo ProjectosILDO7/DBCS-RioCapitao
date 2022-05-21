@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\consultasController;
 use App\Http\Controllers\DisponibMedicoConsultaController;
 use App\Http\Controllers\especialidadeControlle;
 use App\Http\Controllers\homeController;
@@ -107,5 +108,15 @@ Route::middleware(['middleware'=>'auth'])->group(function(){
     //Routas para medico
     //===============================================================================================================================
     Route::get('/mostraDisponibilidade', [DisponibMedicoConsultaController::class, 'index'])->name('mostraDisponibilidade');
+    Route::get('/dDeleteConfim/{id}', [DisponibMedicoConsultaController::class, 'confirmDelete'])->name('dDeleteConfirm');
+    Route::get('/marcarDisponib', [DisponibMedicoConsultaController::class, 'create'])->name('formDisponibilidade');
+    Route::post('/addDisponibilidade', [DisponibMedicoConsultaController::class, 'store'])->name('addDisponibilidade');
+    Route::post('/delDisponib/{id}', [DisponibMedicoConsultaController::class, 'destroy'])->name('dDelete');
+    Route::get('/infoDisponib/{id}', [DisponibMedicoConsultaController::class, 'infoDisponibilidade'])->name('dInfo');
+
+    //consultas
+    Route::get('/listaDeConsultas', [consultasController::class, 'index'])->name('listConsulta');
+    Route::get('/marcarCons', [consultasController::class, 'create'])->name('formConsulta');
+    Route::post('/registaCOnsul', [consultasController::class, 'store'])->name('registarConsulta');
 });
 

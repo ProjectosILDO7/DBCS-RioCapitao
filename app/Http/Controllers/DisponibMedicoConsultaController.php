@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\disponibilidadeMedicaConsultRequest;
 use App\Models\disponibMedicoConsulta;
+use App\Models\medico;
 use App\Models\User;
-use App\repositorios\medico\contratos\medicoInterface;
+use App\repositorios\disponibilidadeConsulta\contratos\disponibilidadeInterface;
 use Illuminate\Http\Request;
 
 class DisponibMedicoConsultaController extends Controller
 {
     protected $model;
-    public function __construct(medicoInterface $medico)
+    public function __construct(disponibilidadeInterface $medico)
     {
         $this->model=$medico;
     }
@@ -22,26 +24,45 @@ class DisponibMedicoConsultaController extends Controller
 
         $m = $userId->find($idUser);
         $medicoId=$m->userMedico->id;
-        $medicoEsp=$this->model->get($medicoId);
-        //dd($especialidades = $medicoEsp->especialidades->nome_especialidade);
-    $especialidades = $medicoEsp->especialidades;
-        return view('layouts.medicoUser.disponibilidadeMedica', compact('especialidades', 'medicoEsp'));
+        $medico=$m->userMedico->nome;
+        //instanciar o medel medico
+        $medicoEsp=medico::findOrFail($medicoId);
+        $dispo = disponibMedicoConsulta::where('medico_id', $medicoId)->get();
+
+        $especialidades = $medicoEsp->especialidades;
+        return view('layouts.medicoUser.disponibilidadeMedica', compact( 'dispo', 'especialidades', 'medicoEsp', 'medicoId', 'medico'));
     }
 
     
     public function create()
     {
-        //
+        $userId= new User();
+        $idUser = Auth()->user()->id;
+
+        $m = $userId->find($idUser);
+        $medicoId=$m->userMedico->id;
+        $medico=$m->userMedico->nome;
+        //instanciar o medel medico
+        $medicoEsp=medico::findOrFail($medicoId);
+        $dispo = disponibMedicoConsulta::where('medico_id', $medicoId)->get();
+
+        $especialidades = $medicoEsp->especialidades;
+        return view('layouts.medicoUser.formDispo', compact( 'dispo', 'especialidades', 'medicoEsp', 'medicoId', 'medico'));
     }
 
     
-    public function store(Request $request)
+    public function store(disponibilidadeMedicaConsultRequest $request)
     {
         //
+        $disp = $this->model->create($request->all());
+        if($disp){
+            return redirect()->route('mostraDisponibilidade');
+        }
+
     }
 
     
-    public function show(disponibMedicoConsulta $disponibMedicoConsulta)
+    public function infoDisponibilidade(disponibMedicoConsulta $disponibMedicoConsulta)
     {
         //
     }
@@ -58,8 +79,20 @@ class DisponibMedicoConsultaController extends Controller
         //
     }
 
-    public function destroy(disponibMedicoConsulta $disponibMedicoConsulta)
+    public function confirmDelete($id)
+    {
+        $disponibilidade=$this->model->get($id);
+        return view('layouts.medicoUser.formAlert', compact('disponibilidade'));
+        //$d = $this->model->deletar($id);
+    }
+
+    public function destroy($id)
     {
         //
+        $del=$this->model->deletar($id);
+        if($del){
+            return redirect()->route('mostraDisponibilidade');
+        }
+
     }
 }

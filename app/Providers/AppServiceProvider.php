@@ -35,6 +35,16 @@ class AppServiceProvider extends ServiceProvider
             'App\repositorios\horaVisita\contratos\horaVisitaInterface',
             'App\repositorios\horaVisita\eloquente\horaVisitaRepositorio',
          );
+
+         $this->app->bind(
+            'App\repositorios\disponibilidadeConsulta\contratos\disponibilidadeInterface',
+            'App\repositorios\disponibilidadeConsulta\eloquente\disponibilidadeRepositorio',
+         );
+
+         $this->app->bind(
+            'App\repositorios\consulta\contratos\consultaInterface',
+            'App\repositorios\consulta\eloquente\consultaRepositorio',
+         );
     }
 
     /**

@@ -17,7 +17,6 @@ class CreateRegistarConsultasTable extends Migration
             $table->id();
             $table->foreignId('paciente_id')->constrained('pacientes');
             $table->foreignId('disponib_medico_consulta_id')->constrained('disponib_medico_consultas');
-            $table->string('data_dispo_medica');
             $table->timestamps();
         });
     }

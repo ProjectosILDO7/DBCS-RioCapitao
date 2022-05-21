@@ -7,7 +7,7 @@
         {{-- Titulo da pagina --}}
         <div class="app-title">  
             <div>
-            <h1><i class="fa fa-dashboard"></i> Disponibilidade médica</h1>
+            <h1><i class="fa fa-dashboard"></i> Consultas registadas</h1>
             <p>Centro de Saúde - Rio Capitão</p>
             </div>
             <ul class="app-breadcrumb breadcrumb">
@@ -20,9 +20,9 @@
         {{-- Corpo da pagina --}}
 
         <div class="card">
-            <div class="card-header">Marque sua disponibilidade de consulta</div>
+            <div class="card-header">Marcação de consulta</div>
             <div class="card-body">
-               @include('includes.disponibMedica.listDispon')
+               @include('includes.includeConsultas.listConsultas')
             </div>
         </div>
 

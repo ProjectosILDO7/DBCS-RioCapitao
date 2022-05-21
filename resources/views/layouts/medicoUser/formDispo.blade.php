@@ -22,7 +22,7 @@
         <div class="card">
             <div class="card-header">Marque sua disponibilidade de consulta</div>
             <div class="card-body">
-               @include('includes.disponibMedica.listDispon')
+               @include('includes.disponibMedica.formDisponibMedica')
             </div>
         </div>
 
