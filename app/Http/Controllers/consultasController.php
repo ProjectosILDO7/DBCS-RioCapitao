@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\registarConsultaRequest;
 use App\Models\disponibMedicoConsulta;
-use App\Models\medico;
 use App\Models\paciente;
 use App\repositorios\consulta\contratos\consultaInterface;
 use Illuminate\Http\Request;
@@ -32,10 +32,10 @@ class consultasController extends Controller
     }
 
     
-    public function store(Request $request)
+    public function store(registarConsultaRequest $request)
     {
         //
-        dd($request->all());
+        $cmarc=$this->model->create($request->all());
     }
 
     

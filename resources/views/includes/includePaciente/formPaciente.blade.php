@@ -12,7 +12,7 @@
   
   <div class="form-group col-6">
     <label class="control-label">Data de nascimento</label>
-    <input class="form-control" type="date" id="data_nasc" name="data_nasc" placeholder="Data nasc: " value="{{ $paciente->data_nasc ?? old('data_nasc') }}">
+    <input class="form-control" type="date" id="" name="data_nasc" placeholder="Data nasc: " value="{{ $paciente->data_nasc ?? old('data_nasc') }}">
     @error('data_nasc')
       <span class="text-danger small">{{ $message }}</span>
     @enderror

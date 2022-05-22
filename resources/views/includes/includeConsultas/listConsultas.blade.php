@@ -21,7 +21,7 @@
             <td>{{ $cons->nome }}</td>
             <td>{{ $cons->data_dispon }}</td>
             <td>
-                <a class="mr-2" href="{{ route('dInfo', $d->id) }}"><i class="fa fa-list text-success"></i></a>
+                <a class="mr-2" href="{{ route('dInfo', $cons->id) }}"><i class="fa fa-list text-success"></i></a>
             </td>
           </tr>
         @endforeach

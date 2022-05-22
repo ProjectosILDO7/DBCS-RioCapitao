@@ -58,7 +58,9 @@
             <div class="tile">
                 <h3 class="tile-title">Consultas</h3>
                 <div class="embed-responsive embed-responsive-16by9">
+
                 <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
+                
                 </div>
             </div>
             </div>
@@ -66,7 +68,9 @@
             <div class="tile">
                 <h3 class="tile-title">Tratamentos Intensivos</h3>
                 <div class="embed-responsive embed-responsive-16by9">
+
                 <canvas class="embed-responsive-item" id="pieChartDemo"></canvas>
+
                 </div>
             </div>
             </div>

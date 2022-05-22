@@ -2,8 +2,8 @@
     @csrf
     <div class="row">
       <div class="form-group col-3">
-            <label for="" class="text-secondary">Paciente</label>
-            <select class="form-control" id="pacienteSelect" multiple="">
+            <label for="" class="text-secondary">O Paciente</label>
+            <select class="form-control" id="pacienteSelect" name="paciente_id">
                 <optgroup label="Selcione o paciente">
                     @foreach ($pacientes as $p)
                          <option value="{{ $p->id }}">{{ $p->nome }}</option>
@@ -11,12 +11,14 @@
                 </optgroup>
             
             </select>
-
+            @error('paciente_id')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="form-group col-6">
           <label for="" class="text-secondary">O Médico</label>
-          <select class="form-control" id="medicoSelect" multiple="">
+          <select class="form-control" id="medicoSelect" name="disponib_medico_consulta_id">
               <optgroup label="Selcione o médico">
                 @foreach ($medicos as $m)
                     <option value="{{ $m->id }}">{{ $m->medico }} ( {{ $m->data_dispon }} - {{ $m->hora_inicial }} )</option>
@@ -24,7 +26,9 @@
               </optgroup>
           
           </select>
-          
+          @error('disponib_medico_consulta_id')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
       </div>
 
         <div class="form-group col-3 mt-4">
