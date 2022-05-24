@@ -15,8 +15,8 @@ class CreateRegistarConsultasTable extends Migration
     {
         Schema::create('registar_consultas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('paciente_id')->constrained('pacientes');
-            $table->foreignId('disponib_medico_consulta_id')->constrained('disponib_medico_consultas');
+            $table->string('paciente');
+            $table->foreignId('disponib_medica_id')->constrained('disponib_medico_consultas')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ class CreateDisponibMedicoConsultasTable extends Migration
     {
         Schema::create('disponib_medico_consultas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('medico_id')->constrained('disponib_medico_consultas');
+            $table->foreignId('medico_id')->constrained('disponib_medico_consultas')->onDelete('cascade');
             $table->string('medico');
             $table->string('data_dispon');
             $table->string('hora_inicial');

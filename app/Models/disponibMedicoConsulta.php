@@ -18,4 +18,6 @@ class disponibMedicoConsulta extends Model
         'especialidade'
     ];
 
+    
+
 }

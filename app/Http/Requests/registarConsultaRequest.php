@@ -24,16 +24,16 @@ class registarConsultaRequest extends FormRequest
     public function rules()
     {
         return [
-            'paciente_id'=>['bail', 'required'],
-            'disponib_medico_consulta_id'=>['bail', 'required']
+            'paciente'=>['bail', 'required'],
+            'disponib_medica_id'=>['bail', 'required']
         ];
     }
 
     public function messages()
     {
         return [
-            'paciente_id.required'=>'Preenchimento obrigatório',
-            'disponib_medico_consulta_id.required'=>'Preenchimento obrigatório'
+            'paciente.required'=>'Preenchimento obrigatório',
+            'disponib_medica_id.required'=>'Preenchimento obrigatório'
         ];
     }
 }

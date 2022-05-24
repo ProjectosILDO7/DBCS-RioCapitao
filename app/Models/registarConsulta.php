@@ -9,8 +9,12 @@ class registarConsulta extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'paciente_id',
-        'disponib_medico_consulta_id'
+        'paciente',
+        'disponib_medica_id'
     ];
+
+    public function rgConsultas(){
+        return $this->belongsTo(disponibMedicoConsulta::class);
+    }
     
 }

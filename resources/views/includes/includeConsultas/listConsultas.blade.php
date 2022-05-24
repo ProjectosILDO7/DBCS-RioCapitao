@@ -5,25 +5,24 @@
         <thead>
           <tr>
             <th>Nº</th>
-            <th>Paciente</th>
-            <th>Disponibilidade Médica</th>
-            <th>Opções</th>
+            <th>Pacientes</th>
+            <th>Status da consulta</th>
           </tr>
         </thead>
 
         <tbody>
-        @php
-            $n=1;
-        @endphp
-        @foreach($consulta as $cons)
-          <tr>
-            <td>{{ $n++ }}</td>
-            <td>{{ $cons->nome }}</td>
-            <td>{{ $cons->data_dispon }}</td>
-            <td>
-                <a class="mr-2" href="{{ route('dInfo', $cons->id) }}"><i class="fa fa-list text-success"></i></a>
-            </td>
-          </tr>
-        @endforeach
+          @forelse ($consultas as $cons)
+            <tr>
+              <td>{{ $loop->iteration }}</td>
+              <td>{{ $cons->paciente }}</td>
+              <td>
+                  <a class="mr-2" href="{{ route('statusConsulta', [$cons->disponib_medica_id, $cons->paciente]) }}"><i class="fa fa-list text-success"></i></a>
+              </td>
+            </tr>
+          @empty
+              <tr>
+                <td colspan="3"><span class="text-danger">De momento não tem consultas maracadas</span></td>
+              </tr>
+          @endforelse
         </tbody>
       </table>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\registarConsultaRequest;
 use App\Models\disponibMedicoConsulta;
 use App\Models\paciente;
+use App\Models\registarConsulta;
 use App\repositorios\consulta\contratos\consultaInterface;
 use Illuminate\Http\Request;
 
@@ -18,8 +19,8 @@ class consultasController extends Controller
     
     public function index()
     {
-        $consulta=$this->model->getList();
-        return view('layouts.consultas.consultas', compact('consulta'));
+        $consultas=$this->model->getList();
+        return view('layouts.consultas.consultas', compact('consultas'));
     }
 
     
@@ -27,7 +28,7 @@ class consultasController extends Controller
     {
         $pacientes = paciente::all();
         $medicos = disponibMedicoConsulta::all();
-
+        
         return view('layouts.consultas.formConsultas', compact('pacientes', 'medicos'));
     }
 
@@ -36,12 +37,16 @@ class consultasController extends Controller
     {
         //
         $cmarc=$this->model->create($request->all());
+        $consultas=$this->model->getList();
+        return view('layouts.consultas.consultas', compact('consultas'));
     }
 
     
-    public function show($id)
+    public function info($id, $paciente)
     {
         //
+        $info=disponibMedicoConsulta::find($id);
+        return view('layouts.consultas.infoConsult', compact('info', 'paciente'));
     }
 
    

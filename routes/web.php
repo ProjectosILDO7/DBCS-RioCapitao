@@ -118,5 +118,6 @@ Route::middleware(['middleware'=>'auth'])->group(function(){
     Route::get('/listaDeConsultas', [consultasController::class, 'index'])->name('listConsulta');
     Route::get('/marcarCons', [consultasController::class, 'create'])->name('formConsulta');
     Route::post('/registaCOnsul', [consultasController::class, 'store'])->name('registarConsulta');
+    Route::get('/statusCons/{id}/{nome}', [consultasController::class, 'info'])->name('statusConsulta');
 });
 

@@ -21,4 +21,8 @@ class paciente extends Model
     public function OneUser(){
         return $this->hasOne(user::class);
     }
+
+    public function rgConsultas(){
+        return $this->belongsTo(registarConsulta::class);
+    }
 }
