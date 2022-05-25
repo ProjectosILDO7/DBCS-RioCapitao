@@ -45,6 +45,11 @@ class AppServiceProvider extends ServiceProvider
             'App\repositorios\consulta\contratos\consultaInterface',
             'App\repositorios\consulta\eloquente\consultaRepositorio',
          );
+
+         $this->app->bind(
+            'App\repositorios\internamentos\contratos\internamentoInterface',
+            'App\repositorios\internamentos\eloquente\internamentoRepositorio',
+         );
     }
 
     /**

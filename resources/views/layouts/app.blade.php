@@ -135,7 +135,7 @@
           <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-table"></i><span class="app-menu__label">Actividades</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
           <li><a class="treeview-item" href="{{ route('listConsulta') }}"><i class="icon fa fa-stethoscope"></i> Consultas</a></li>
-              <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-medkit"></i> Internamentos</a></li>
+              <li><a class="treeview-item" href="{{ route('internamentos') }}"><i class="icon fa fa-medkit"></i> Internamentos</a></li>
               <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-heartbeat"></i> Actividades Médicas</a></li>
             </ul>
           </li>

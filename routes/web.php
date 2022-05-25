@@ -5,6 +5,7 @@ use App\Http\Controllers\DisponibMedicoConsultaController;
 use App\Http\Controllers\especialidadeControlle;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\HorasDeVisitaController;
+use App\Http\Controllers\internamentosController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\PacienteController;
@@ -119,5 +120,8 @@ Route::middleware(['middleware'=>'auth'])->group(function(){
     Route::get('/marcarCons', [consultasController::class, 'create'])->name('formConsulta');
     Route::post('/registaCOnsul', [consultasController::class, 'store'])->name('registarConsulta');
     Route::get('/statusCons/{id}/{nome}', [consultasController::class, 'info'])->name('statusConsulta');
+
+    //Internamento
+    Route::get('/internamentos', [internamentosController::class, 'index'])->name('internamentos');
 });
 
