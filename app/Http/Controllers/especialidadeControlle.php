@@ -29,7 +29,7 @@ class especialidadeControlle extends Controller
     {
         $esp=$this->model->create($request->all());
         if($esp){
-            return redirect()->route('user.especialidade');
+            return redirect()->back()->with('alert', 'Salvo com sucesso!');
         }
     }
 

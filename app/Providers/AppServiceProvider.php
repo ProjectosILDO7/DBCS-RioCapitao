@@ -47,7 +47,7 @@ class AppServiceProvider extends ServiceProvider
          );
 
          $this->app->bind(
-            'App\repositorios\internamentos\contratos\internamentoInterface',
+            'App\repositorios\internamentos\contratos\internamentosInterface',
             'App\repositorios\internamentos\eloquente\internamentoRepositorio',
          );
     }

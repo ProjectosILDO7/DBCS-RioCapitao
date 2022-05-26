@@ -42,12 +42,12 @@ class PacienteController extends Controller
         ]);
         $userId = $dataUser->id;
         if(!$dataUser){
-            return redirect()->back();
+            return redirect()->back()->with('error', 'Erro ao salvar esses dados');
         }
-        $data=$request->only('nome', 'data_nasc', 'genero', 'endereco', 'telemovel', 'email');
+        $data=$request->only('nome', 'data_nasc', 'genero', 'endereco', 'telemovel', 'email', 'status');
         $data['user_id']=$userId;
         $this->model->create($data);
-        return redirect()->route('pacienteList'); 
+        return redirect()->back()->with('alert', 'Paciente salvo com sucesso!'); 
     
     }
 

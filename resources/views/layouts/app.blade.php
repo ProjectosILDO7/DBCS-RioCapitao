@@ -136,7 +136,7 @@
             <ul class="treeview-menu">
           <li><a class="treeview-item" href="{{ route('listConsulta') }}"><i class="icon fa fa-stethoscope"></i> Consultas</a></li>
               <li><a class="treeview-item" href="{{ route('internamentos') }}"><i class="icon fa fa-medkit"></i> Internamentos</a></li>
-              <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-heartbeat"></i> Actividades Médicas</a></li>
+              <li><a class="treeview-item" href="{{ route('actividadeMedicas') }}"><i class="icon fa fa-heartbeat"></i> Actividades Médicas</a></li>
             </ul>
           </li>
 
@@ -305,6 +305,27 @@
       });
       
       $('#medicoSelect').select2();
+    </script>
+
+    {{-- Select2 --}}
+    <script type="text/javascript">
+      $('#sl').on('click', function(){
+      	$('#tl').loadingBtn();
+      	$('#tb').loadingBtn({ text : "Signing In"});
+      });
+      
+      $('#el').on('click', function(){
+      	$('#tl').loadingBtnComplete();
+      	$('#tb').loadingBtnComplete({ html : "Sign In"});
+      });
+      
+      $('#demoDate').datepicker({
+      	format: "dd/mm/yyyy",
+      	autoclose: true,
+      	todayHighlight: true
+      });
+      
+      $('#quartoSelect').select2();
     </script>
     <!-- Data table plugin-->
     <script type="text/javascript" src="{{ asset('js/plugins/jquery.dataTables.min.js') }}"></script>

@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Mostra Consultas')
+@section('title', 'Internamentos')
 
 @section('content')
        
         {{-- Titulo da pagina --}}
         <div class="app-title">  
             <div>
-            <h1><i class="fa fa-dashboard"></i> Marcação de consultas</h1>
+            <h1><i class="fa fa-dashboard"></i> Internamentos</h1>
             <p>Centro de Saúde - Rio Capitão</p>
             </div>
             <ul class="app-breadcrumb breadcrumb">
@@ -18,14 +18,17 @@
         {{-- ========================================================================================================= --}}
         
         {{-- Corpo da pagina --}}
-
         <div class="card">
-            <div class="card-header">Marque consultas</div>
-           
+            <div class="card-header">
+                Adicionar ao internamento
+            </div>
             <div class="card-body">
-               @include('includes.alertas')
-               @include('includes.includeConsultas.formConsulta')
+                @include('includes.alertas')
+                <form method="post" action="{{ route('addInternamento') }}">
+                        @include('includes.includeInternamento.formInternamento')
+                </form>
             </div>
         </div>
+       
 
 @endsection

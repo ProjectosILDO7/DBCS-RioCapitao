@@ -45,13 +45,13 @@ class MedicoController extends Controller
         ]);
         $userId = $dataUser->id;
         if(!$dataUser){
-            return redirect()->back();
+            return redirect()->back()->with('error', 'Erro ao executar esse registo!');
         }
         $data=$request->only('nome', 'telefone', 'email');
         $data['user_id']=$userId;
         $esp=$this->model->create($data);
         $esp->especialidades()->sync($request->especialidade);
-        return redirect()->route('medicoList'); 
+        return redirect()->back()->with('alert', 'Medico(a) salvo com sucesso!'); 
     
     }
 

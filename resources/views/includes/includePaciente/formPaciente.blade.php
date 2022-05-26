@@ -54,6 +54,14 @@
     @enderror
   </div>
 
+  <div class="form-group col-6" hidden>
+    <label class="control-label">Status</label>
+    <input class="form-control" type="text" id="status" name="status" placeholder="status: " value="paciente">
+    @error('status')
+      <span class="text-danger small">{{ $message }}</span>
+    @enderror
+  </div>
+
   <div class="form-group col-6">
     <label class="control-label">Código de acesso</label>
     <input class="form-control" type="text" id="email" name="password" placeholder="Senha: " value="{{ $key ?? old('password') }}">

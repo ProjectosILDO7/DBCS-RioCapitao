@@ -23,6 +23,7 @@
                 Especialidades
             </div>
             <div class="card-body">
+                @include('includes.alertas')                    
                 <form method="post" action="{{ route('user.addEspecialidade') }}">
                         @include('includes.formEspecialidade')
                 </form>

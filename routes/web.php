@@ -122,6 +122,8 @@ Route::middleware(['middleware'=>'auth'])->group(function(){
     Route::get('/statusCons/{id}/{nome}', [consultasController::class, 'info'])->name('statusConsulta');
 
     //Internamento
-    Route::get('/internamentos', [internamentosController::class, 'index'])->name('internamentos');
+    Route::get('/internamentos', [internamentosController::class, 'create'])->name('internamentos');
+    Route::post('/inserInternamento', [internamentosController::class, 'store'])->name('addInternamento');
+    Route::get('/actividadeMedica', [DisponibMedicoConsultaController::class, 'activMedicas'])->name('actividadeMedicas');
 });
 

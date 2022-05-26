@@ -2,81 +2,75 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\internamentoRequest;
+use App\Models\medico;
+use App\Models\paciente;
+use App\Models\quartoDeInternamento;
+use App\repositorios\internamentos\contratos\internamentosInterface;
 use Illuminate\Http\Request;
 
 class internamentosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $model;
+
+    public function __construct(internamentosInterface $model)
+    {
+        $this->model = $model;
+    }
+    
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
-        //
+        //buscar o formulário
+        $pacientes = paciente::all();
+        $quartos = quartoDeInternamento::all();
+        $medicos = medico::all();
+
+        return view('layouts.internamentos.formInternamento', compact('pacientes', 'quartos', 'medicos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(internamentoRequest $request)
     {
-        //
+        //adiciona internamento
+        $pacientes = paciente::all();
+        $quartos = quartoDeInternamento::all();
+        $medicos = medico::all();
+
+        $inter=$this->model->create($request->all());
+        if($inter){
+            
+            return redirect()->back()->with('alert', 'Internamento registado com sucesso!');
+        }else{
+            return redirect()->back()->with('alert', 'Erro ao adicionar!');
+        }
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
         //

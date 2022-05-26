@@ -37,8 +37,9 @@ class consultasController extends Controller
     {
         //
         $cmarc=$this->model->create($request->all());
-        $consultas=$this->model->getList();
-        return view('layouts.consultas.consultas', compact('consultas'));
+        //$consultas=$this->model->getList();
+        //return view('layouts.consultas.consultas', compact('consultas'));
+        return redirect()->back()->with('alert', 'Registo de consulta adecionado com sucesso!');
     }
 
     

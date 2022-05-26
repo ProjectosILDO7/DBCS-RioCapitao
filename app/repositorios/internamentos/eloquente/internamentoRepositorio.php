@@ -4,7 +4,7 @@ namespace App\repositorios\internamentos\eloquente;
 use App\Models\internamento;
 use App\repositorios\internamentos\contratos\internamentosInterface;
 
-class internamentoRepository extends internamentoAbstract implements internamentosInterface {
+class internamentoRepositorio extends internamentoAbstract implements internamentosInterface {
 
     protected $model;
 

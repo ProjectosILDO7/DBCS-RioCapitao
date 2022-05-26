@@ -16,6 +16,7 @@ class paciente extends Model
         'endereco',
         'telemovel',
         'email',
+        'status'
     ];
 
     public function OneUser(){

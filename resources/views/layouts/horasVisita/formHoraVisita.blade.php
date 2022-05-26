@@ -23,7 +23,7 @@
                 Horas de visita
             </div>
             <div class="card-body">
-                <span class="text-danger">{{ $sms ?? '' }}</span>
+                @include('includes.alertas')
                 <form method="post" action="{{ route('horaVisita.addHoraVisita') }}">
                         @include('includes.includeHoraVisita.formHoraVisita')
                 </form>

@@ -23,6 +23,7 @@
                 Quartos
             </div>
             <div class="card-body">
+                @include('includes.alertas')
                 <form method="post" action="{{ route('quarto.addQuarto') }}">
                         @include('includes.includeQuarto.formQuarto')
                 </form>

@@ -56,7 +56,7 @@ class DisponibMedicoConsultaController extends Controller
         //
         $disp = $this->model->create($request->all());
         if($disp){
-            return redirect()->route('mostraDisponibilidade');
+            return redirect()->back()->with('alert', 'Disponibilidade salvo com sucesso!');
         }
 
     }
@@ -94,5 +94,11 @@ class DisponibMedicoConsultaController extends Controller
             return redirect()->route('mostraDisponibilidade');
         }
 
+    }
+
+    //actividades medicas
+    public function activMedicas(){
+        $medicos = $this->model->getList();
+        return view('layouts.actividadesMedicas.actividadeMedica', compact('medicos'));
     }
 }

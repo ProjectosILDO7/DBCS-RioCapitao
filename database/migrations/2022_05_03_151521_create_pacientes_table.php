@@ -22,6 +22,7 @@ class CreatePacientesTable extends Migration
             $table->string('endereco', 45);
             $table->string('telemovel', 9);
             $table->string('email')->unique();
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -22,6 +22,7 @@
         <div class="card">
             <div class="card-header">Tens a certeza que desejas apagar esta disponibilidade: <span class="font-weight-bold">{{ $disponibilidade->data_dispon }}</span></div>
             <div class="card-body">
+                @include('includes.alertas')
                 <form action="{{ route('dDelete', $disponibilidade->id) }}}" method="post">
                     @csrf
                     <div class="row">
