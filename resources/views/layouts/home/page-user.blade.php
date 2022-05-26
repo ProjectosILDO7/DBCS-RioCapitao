@@ -22,11 +22,12 @@
             <div class="card">
                 <div class="card-header">Redefinir perfil</div>
                 <div class="card-body">
-                  <div class="row">
-                      <div class="form-group col-12 m-auto">
+                    @include('includes.alertas')
+
+                      <div class="form-group col-12">
                            @include('includes.formUser')
                       </div>
-                  </div>
+
                 </div>
             </div>
         </div>

@@ -49,7 +49,7 @@ Route::middleware(['middleware'=>'auth'])->group(function(){
     })->name('home.admin');
 
     //configuracao de pagina
-    Route::get('/page-user', [homeController::class, 'definPage'])->name('page-user');
+    Route::get('/page-user', [homeController::class, 'index'])->name('page-user');
     Route::put('/def_perfil/{id}', [homeController::class, 'update'])->name('salvar.perfil');
     
     //Especialidade
@@ -125,5 +125,7 @@ Route::middleware(['middleware'=>'auth'])->group(function(){
     Route::get('/internamentos', [internamentosController::class, 'create'])->name('internamentos');
     Route::post('/inserInternamento', [internamentosController::class, 'store'])->name('addInternamento');
     Route::get('/actividadeMedica', [DisponibMedicoConsultaController::class, 'activMedicas'])->name('actividadeMedicas');
+    
+    Route::get('/statusInternamento/{id}', [internamentosController::class, 'show'])->name('statusInternamento');
 });
 

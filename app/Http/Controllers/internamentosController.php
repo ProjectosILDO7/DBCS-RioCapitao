@@ -41,6 +41,12 @@ class internamentosController extends Controller
         $pacientes = paciente::all();
         $quartos = quartoDeInternamento::all();
         $medicos = medico::all();
+        //busca do id do paciente
+        $idPaciente=$request->paciente_id;
+        //instaciar a class paciente
+        $pac=paciente::find($idPaciente);
+        //actualizar status do paciente para internado(a)
+        $pac->update(['status'=>'Internado(a)']);
 
         $inter=$this->model->create($request->all());
         if($inter){
@@ -55,7 +61,13 @@ class internamentosController extends Controller
     
     public function show($id)
     {
-        //
+        //procurar o paciente atravez do ID
+        $paciente = paciente::find($id);
+        //Buscar o nome do médico responsavel
+        $medicoResponsavel=$paciente->internamento->medico_respons;
+        $quartoId=$paciente->internamento->quarto_de_internamentos_id;
+        $quarto = quartoDeInternamento::find($quartoId);
+        return view('layouts.internamentos.detalheInternamento', compact('paciente','medicoResponsavel', 'quarto'));
     }
 
 

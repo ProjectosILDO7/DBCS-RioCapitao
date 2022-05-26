@@ -26,4 +26,8 @@ class paciente extends Model
     public function rgConsultas(){
         return $this->belongsTo(registarConsulta::class);
     }
+
+    public function internamento(){
+        return $this->hasOne(internamento::class);
+    }
 }

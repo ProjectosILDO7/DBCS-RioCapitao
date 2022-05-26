@@ -27,7 +27,7 @@
                         <a class="mr-2" href="{{ route('pacienteEdit', $pc->id) }}"><i class="fa fa-edit text-success"></i></a>
                         <a class="mr-2" href="{{ route('pacienteDelete', $pc->id) }}"><i class="fa fa-trash text-danger"></i></a>
                         @if ($pc->status=='Internado(a)')
-                            <a class="mr-2" href="" class="text-danger"><i class="fa fa-trash text-danger"></i> {{ $pc->status }}</a>
+                            <a class="mr-2" href="{{ route('statusInternamento', $pc->id) }}" class="text-danger"><i class="fa fa-medkit text-primary"></i> {{ $pc->status }}</a>
                         @endif
                     </td>
                   </tr>

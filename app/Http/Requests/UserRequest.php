@@ -38,7 +38,6 @@ class UserRequest extends FormRequest
                 "unique:users,tel,{$id},id" // validação de tel com o mesmo form de cadastrar e editar
             ],
             'password' => 'bail|required|max:16|min:6',
-            'senha2' => 'bail|required|same:password',
             'admin' => 'bail|required'
         ];
 
