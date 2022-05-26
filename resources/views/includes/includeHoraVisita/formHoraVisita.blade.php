@@ -1,6 +1,7 @@
 @csrf
 
 <div class="d-flex justify-content-center">
+  
   <div class="row">
   <div class="form-group col-3">
     <label class="control-label">horas para visitas</label>
