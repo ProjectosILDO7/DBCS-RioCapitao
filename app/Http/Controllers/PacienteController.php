@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\pacienteRequest;
+use App\Models\medico;
 use App\Models\User;
 use App\repositorios\paciente\contratos\pacienteInterface;
 
@@ -94,5 +95,9 @@ class PacienteController extends Controller
             $userPac = $upUser->find($idPacUser)->delete();
             return redirect()->route('pacienteList');
    
+    }
+
+    public function pedido(){
+        return view('layouts.paciente.solicitarConsulta');
     }
 }

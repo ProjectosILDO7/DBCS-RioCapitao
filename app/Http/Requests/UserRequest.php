@@ -49,6 +49,14 @@ class UserRequest extends FormRequest
                 'max:16',
                 'min:6',
             ];
+
+            $rules['tel']=[
+                'bail',
+                'nullable',
+                'max:9',
+                'min:9',
+            ];
+            
         }
         
         return $rules;

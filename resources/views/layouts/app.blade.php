@@ -28,7 +28,7 @@
 
 
     <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="index.html">CS - Rio Capitão</a>
+    <header class="app-header"><a class="app-header__logo" href="{{ route('home.admin') }}">CS - Rio Capitão</a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">
@@ -82,7 +82,7 @@
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
           <ul class="dropdown-menu settings-menu dropdown-menu-right">
             @if(Auth()->user()->admin=='1')
-            <li><a class="dropdown-item" href="#"><i class="fa fa-cog fa-lg"></i> Eventos</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fa fa-envelope-o fa-lg"></i> Eventos (  )</a></li>
             @endif
             
             <li><a class="dropdown-item" href="{{ route('page-user') }}"><i class="fa fa-user fa-lg"></i> Perfil</a></li>
@@ -113,7 +113,7 @@
       </div>
 
       <ul class="app-menu">
-        <li><a class="app-menu__item active" href="dashboard.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Painel de controle</span></a></li>
+        <li><a class="app-menu__item active" href="{{ route('home.admin') }}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Painel de controle</span></a></li>
         {{-- <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">UI Elements</span><i class="treeview-indicator fa fa-angle-right"></i></a> --}}
           {{-- <ul class="treeview-menu">
             <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Bootstrap Elements</a></li>
@@ -160,8 +160,8 @@
       
           <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-table"></i><span class="app-menu__label">Actividades</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-              <li><a class="treeview-item" href="table-basic.html"><i class="icon fa fa-stethoscope"></i> Vér disponibilidade dos médicos</a></li>
-              <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-medkit"></i> Marcar consultas</a></li>
+              <li><a class="treeview-item" href="{{ route('actividadeMedicas') }}"><i class="icon fa fa-stethoscope"></i> Vér disponibilidade dos médicos</a></li>
+              <li><a class="treeview-item" href="{{ route('pedioConsulta') }}"><i class="icon fa fa-medkit"></i> Solicitar consulta</a></li>
             </ul>
           </li>
 

@@ -41,7 +41,6 @@ class homeController extends Controller
     public function update(UserRequest $request, $id)
     {
         //
-        dd($request->password);
 
         if (Auth()->user()->admin=='1') {
             User::find($id)->update([

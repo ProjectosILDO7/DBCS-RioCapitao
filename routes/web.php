@@ -127,5 +127,8 @@ Route::middleware(['middleware'=>'auth'])->group(function(){
     Route::get('/actividadeMedica', [DisponibMedicoConsultaController::class, 'activMedicas'])->name('actividadeMedicas');
     
     Route::get('/statusInternamento/{id}', [internamentosController::class, 'show'])->name('statusInternamento');
+
+    //paciente
+    Route::get('/pedioConsulta', [PacienteController::class, 'pedido'])->name('pedioConsulta');
 });
 
