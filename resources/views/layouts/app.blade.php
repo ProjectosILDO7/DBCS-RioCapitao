@@ -82,7 +82,7 @@
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
           <ul class="dropdown-menu settings-menu dropdown-menu-right">
             @if(Auth()->user()->admin=='1')
-            <li><a class="dropdown-item" href="#"><i class="fa fa-envelope-o fa-lg"></i> Eventos (  )</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fa fa-envelope-o fa-lg"></i> Solicitações (  )</a></li>
             @endif
             
             <li><a class="dropdown-item" href="{{ route('page-user') }}"><i class="fa fa-user fa-lg"></i> Perfil</a></li>

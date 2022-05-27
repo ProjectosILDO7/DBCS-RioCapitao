@@ -130,5 +130,6 @@ Route::middleware(['middleware'=>'auth'])->group(function(){
 
     //paciente
     Route::get('/pedioConsulta', [PacienteController::class, 'pedido'])->name('pedioConsulta');
+    Route::post('/pedioConsulta', [PacienteController::class, 'pedidoConsulta'])->name('solicitaConsulta');
 });
 

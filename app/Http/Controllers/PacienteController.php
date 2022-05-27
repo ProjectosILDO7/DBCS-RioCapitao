@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\pacienteRequest;
+use App\Http\Requests\pedidoRequest;
 use App\Models\medico;
+use App\Models\pedidoConsulta;
 use App\Models\User;
 use App\repositorios\paciente\contratos\pacienteInterface;
-
+use Illuminate\Http\Request;
 
 class PacienteController extends Controller
 {
@@ -99,5 +101,20 @@ class PacienteController extends Controller
 
     public function pedido(){
         return view('layouts.paciente.solicitarConsulta');
+    }
+
+    public function pedidoConsulta(Request $request){
+        
+        $verefi=pedidoConsulta::where('paciente', $request->paciente)->get();
+        if(count($verefi)==0){
+            $pedidoConsulta = pedidoConsulta::create($request->all());
+            if($pedidoConsulta){
+                return redirect()->back()->with('alert', 'Você enviou um pedido de consulta!');
+            }
+        }else{
+            return redirect()->back()->with('error', 'Você já enviou um pedido de consulta!');
+        }
+        
+         
     }
 }

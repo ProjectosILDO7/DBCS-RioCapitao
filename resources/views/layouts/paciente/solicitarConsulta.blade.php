@@ -26,15 +26,22 @@
                     
                         <div class="d-flex justify-content-center">
                             <div class="row">
-                                <form action="" method="post">
-                                    @csrf
-                                    <input type="text" value="{{ Auth()->user()->name }}" hidden>
-                                    <button class="btn btn-primary">
-                                        <i class="fa fa-check"></i>
-                                        Click para
-                                        Solicitar consulta
-                                    </button>
-                                </form>
+
+                                
+                                    @include('includes.alertas')
+
+                                
+                                <div class="form-group col-12 text-center">
+                                    <form action="{{ route('solicitaConsulta') }}" method="post">
+                                        @csrf
+                                        <input type="text" value="{{ Auth()->user()->name }}" name="paciente" hidden>
+                                        <button class="btn btn-primary">
+                                            <i class="fa fa-check"></i>
+                                            Click para
+                                            Solicitar consulta
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
             </div>
