@@ -63,7 +63,7 @@ class especialidadeControlle extends Controller
 
     public function deletar($id){
         if($this->model->deletar($id));
-            return redirect()->route('medicoGetList');
+            return redirect()->route('user.especialidade');
         return redirect()->back();
     }
 }

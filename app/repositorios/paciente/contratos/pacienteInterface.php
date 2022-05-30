@@ -9,5 +9,6 @@ interface pacienteInterface {
     public function update(array $dados, $id);
     public function deletar($id);
     public function infoMedico($id);
+    public function getNome($nome);
     
 }

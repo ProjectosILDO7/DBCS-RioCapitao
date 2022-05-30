@@ -15,7 +15,7 @@ class EspecialidadeMedicos extends Migration
     {
         Schema::create('especialidade_medico', function (Blueprint $table) {
             $table->foreignId('medico_id')->constrained('medicos')->onDelete('cascade');
-            $table->foreignId('especialidade_id')->constrained('especialidades');
+            $table->foreignId('especialidade_id')->constrained('especialidades')->onDelete('cascade');
         });
     }
 

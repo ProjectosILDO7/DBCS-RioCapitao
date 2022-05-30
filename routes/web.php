@@ -5,6 +5,7 @@ use App\Http\Controllers\DisponibMedicoConsultaController;
 use App\Http\Controllers\especialidadeControlle;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\HorasDeVisitaController;
+use App\Http\Controllers\estatisticasController;
 use App\Http\Controllers\internamentosController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\MedicoController;
@@ -130,6 +131,14 @@ Route::middleware(['middleware'=>'auth'])->group(function(){
 
     //paciente
     Route::get('/pedioConsulta', [PacienteController::class, 'pedido'])->name('pedioConsulta');
+    Route::get('/pedioConsultaList', [PacienteController::class, 'listarPedido'])->name('pedioConsultaGetList');
     Route::post('/pedioConsulta', [PacienteController::class, 'pedidoConsulta'])->name('solicitaConsulta');
+
+    //contar
+    Route::get('/totalConsulta', [estatisticasController::class, 'totalSolitacaoConsulta']);
+    Route::get('/totalRegistarConsulta', [estatisticasController::class, 'totalRegistarConsulta']);
+    Route::get('detalhesPedidos/{id}', [pacienteController::class, 'detPedido'])->name('detalhesPedido');
+    Route::post('/apagarPedido/{id}', [PacienteController::class, 'deletarPedido'])->name('apagarPedido');
+    
 });
 

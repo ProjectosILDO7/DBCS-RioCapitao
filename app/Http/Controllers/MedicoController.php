@@ -80,7 +80,7 @@ class MedicoController extends Controller
         $userPac->update([
             'name'=>$request->nome,
             'email'=>$request->email,
-            'admin' => '3',
+            'admin' => '2',
             'tel'=>$request->telemovel,
             'email_verified_at'=>now(),
             'password'=>$key,

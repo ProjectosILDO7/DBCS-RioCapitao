@@ -2,7 +2,7 @@
     <div class="card-header"><i class="fa fa-list"></i> Lista de quartos</div>
     <div class="card-body">
         <div class="table-responsive">
-            <a href="{{ route('addHoraVisita') }}" class="btn btn-sm btn-primary mb-2"><i class="fa fa-plus"></i> Novo quarto</a>
+            <a href="{{ route('addHoraVisita') }}" class="btn btn-sm btn-primary mb-2"><i class="fa fa-plus"></i> Nova hora</a>
 
             <table class="table table-sm table-hover table-bordered" id="sampleTable">
                 <thead>

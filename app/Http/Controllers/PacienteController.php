@@ -103,6 +103,11 @@ class PacienteController extends Controller
         return view('layouts.paciente.solicitarConsulta');
     }
 
+    public function listarPedido(){
+        $pedidos=pedidoConsulta::all();
+        return view('layouts.paciente.listarPedidoConsulta', compact('pedidos'));
+    }
+
     public function pedidoConsulta(Request $request){
         
         $verefi=pedidoConsulta::where('paciente', $request->paciente)->get();
@@ -116,5 +121,15 @@ class PacienteController extends Controller
         }
         
          
+    }
+
+    public function detPedido($nome){
+        $detalhePac=$this->model->getNome($nome);
+        return view('layouts.paciente.detalhePedido', compact('detalhePac'));
+    }
+
+    public function deletarPedido($id){
+        pedidoConsulta::find($id)->delete();
+        return redirect()->route('pedioConsultaGetList');
     }
 }

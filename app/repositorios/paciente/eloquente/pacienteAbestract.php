@@ -37,4 +37,8 @@ abstract class pacienteAbestract{
             return redirect()->back();
         return $this->model->find($id)->delete();
     }
+
+    public function getNome($nome){
+        return $this->model->where('nome', $nome)->first();
+    }
 }

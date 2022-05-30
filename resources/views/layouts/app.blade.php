@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="en">
   <head>
     <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
     <!-- Twitter meta-->
@@ -82,7 +82,7 @@
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
           <ul class="dropdown-menu settings-menu dropdown-menu-right">
             @if(Auth()->user()->admin=='1')
-            <li><a class="dropdown-item" href="#"><i class="fa fa-envelope-o fa-lg"></i> Solicitações (  )</a></li>
+            <li><a class="dropdown-item" href="{{ route('pedioConsultaGetList') }}"><i class="fa fa-envelope-o fa-lg"></i> Solicitações ( <span class="font-weight-bold text-primary">{!! app(App\Http\Controllers\estatisticasController::class)->totalSolitacaoConsulta() !!} </span>)</a></li>
             @endif
             
             <li><a class="dropdown-item" href="{{ route('page-user') }}"><i class="fa fa-user fa-lg"></i> Perfil</a></li>
@@ -122,8 +122,7 @@
             <li><a class="treeview-item" href="widgets.html"><i class="icon fa fa-circle-o"></i> Widgets</a></li>
           </ul> --}}
         </li>
-        <li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Estatística</span></a></li>
-      
+              
         @if(auth()->user()->admin === 1)
           <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-database"></i><span class="app-menu__label">Cadastro</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
@@ -131,7 +130,7 @@
               <li><a class="treeview-item" href="{{ route('medicoList') }}"><i class="icon fa fa-user-md"></i> Médico</a></li>
               <li><a class="treeview-item" href="{{ route('pacienteList') }}"><i class="icon fa fa-solid fa-bed"></i> Paciente</a></li>
               <li><a class="treeview-item" href="{{ route('quartoList') }}"><i class="icon fa fa-hospital-o" aria-hidden="true"></i> Quartos de internamento</a></li>
-              <li><a class="treeview-item" href="{{ route('horaVisitaList') }}"><i class="icon fa fa-time"></i> Horas de visita</a></li>
+              <li><a class="treeview-item" href="{{ route('horaVisitaList') }}"><i class="icon fa fa-clock-o"></i> Horas de visita</a></li>
             </ul>
           </li>
           
@@ -185,7 +184,7 @@
     </aside>
 
     <main class="app-content">
-
+    
          @yield('content')
       
     </main>
@@ -210,7 +209,7 @@
     
     <script type="text/javascript">
     var data = {
-      	labels: ["January", "February", "March", "April", "May"],
+      	labels: ["jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Ago", "set", "Out", "Nov", "Dez"],
       	datasets: [
       		{
       			label: "My First dataset",
@@ -220,7 +219,7 @@
       			pointStrokeColor: "#fff",
       			pointHighlightFill: "#fff",
       			pointHighlightStroke: "rgba(220,220,220,1)",
-      			data: [65, 59, 80, 81, 56]
+      			data: {!! app(App\Http\Controllers\estatisticasController::class)->totalRegistarConsulta() !!}
       		},
       		{
       			label: "My Second dataset",
@@ -230,22 +229,22 @@
       			pointStrokeColor: "#fff",
       			pointHighlightFill: "#fff",
       			pointHighlightStroke: "rgba(151,187,205,1)",
-      			data: [28, 48, 40, 19, 86]
+      			data: {!! app(App\Http\Controllers\estatisticasController::class)->totalRegistarConsulta() !!}
       		}
       	]
       };
       var pdata = [
       	{
-      		value: 300,
+      		value: {!! app(App\Http\Controllers\estatisticasController::class)->totalPacientes() !!},
       		color: "#46BFBD",
       		highlight: "#5AD3D1",
-      		label: "Complete"
+      		label: "Total de Pacientes"
       	},
       	{
-      		value: 50,
+      		value: {!! app(App\Http\Controllers\estatisticasController::class)->totalInternamentos() !!},
       		color:"#F7464A",
       		highlight: "#FF5A5E",
-      		label: "In-Progress"
+      		label: "Tota de internamentos"
       	}
       ]
       
