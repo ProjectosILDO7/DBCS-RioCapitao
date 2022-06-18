@@ -141,6 +141,7 @@
               <li><a class="treeview-item" href="{{ route('actividadeMedicas') }}"><i class="icon fa fa-heartbeat"></i> Actividades Médicas</a></li>
             </ul>
           </li>
+          <li class="treeview"><a class="app-menu__item" href="{{ route('printRelatorio') }}"><i class="app-menu__icon fa fa-line-chart"></i><span class="app-menu__label">Relatório</span></a></li>
 
        @endif 
         
@@ -221,16 +222,16 @@
       			pointHighlightStroke: "rgba(220,220,220,1)",
       			data: {!! app(App\Http\Controllers\estatisticasController::class)->totalRegistarConsulta() !!}
       		},
-      		{
-      			label: "My Second dataset",
-      			fillColor: "rgba(151,187,205,0.2)",
-      			strokeColor: "rgba(151,187,205,1)",
-      			pointColor: "rgba(151,187,205,1)",
-      			pointStrokeColor: "#fff",
-      			pointHighlightFill: "#fff",
-      			pointHighlightStroke: "rgba(151,187,205,1)",
-      			data: {!! app(App\Http\Controllers\estatisticasController::class)->totalRegistarConsulta() !!}
-      		}
+      		// {
+      		// 	label: "My Second dataset",
+      		// 	fillColor: "rgba(151,187,205,0.2)",
+      		// 	strokeColor: "rgba(151,187,205,1)",
+      		// 	pointColor: "rgba(151,187,205,1)",
+      		// 	pointStrokeColor: "#fff",
+      		// 	pointHighlightFill: "#fff",
+      		// 	pointHighlightStroke: "rgba(151,187,205,1)",
+      		// 	data: {!! app(App\Http\Controllers\estatisticasController::class)->totalRegistarConsulta() !!}
+      		// }
       	]
       };
       var pdata = [
@@ -253,6 +254,9 @@
       
       var ctxp = $("#pieChartDemo").get(0).getContext("2d");
       var pieChart = new Chart(ctxp).Pie(pdata);
+
+      var ctxb = $("#graficoDeBarra").get(0).getContext("2d");
+      var barChart = new Chart(ctxb).Bar(data);
 
     </script>
     <!-- Google analytics script-->

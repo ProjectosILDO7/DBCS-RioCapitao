@@ -11,6 +11,7 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\QuartoDeInternamentoController;
+use App\Http\Controllers\statusRelatorioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -139,6 +140,9 @@ Route::middleware(['middleware'=>'auth'])->group(function(){
     Route::get('/totalRegistarConsulta', [estatisticasController::class, 'totalRegistarConsulta']);
     Route::get('detalhesPedidos/{id}', [pacienteController::class, 'detPedido'])->name('detalhesPedido');
     Route::post('/apagarPedido/{id}', [PacienteController::class, 'deletarPedido'])->name('apagarPedido');
+
+    //printRelatorio
+    Route::get('/printRelatorio', [statusRelatorioController::class, 'index'])->name('printRelatorio');
     
 });
 
