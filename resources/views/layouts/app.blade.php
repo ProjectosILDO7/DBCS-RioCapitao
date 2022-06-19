@@ -201,14 +201,15 @@
     <script src="{{ asset('js/plugins/pace.min.js') }}"></script>
 
     <!-- Page specific javascripts-->
-    <script type="text/javascript" src="{{ asset('js/plugins/chart.js') }}"></script>
     
-    <script type="text/javascript" src="js/plugins/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript" src="js/plugins/select2.min.js"></script>
-    <script type="text/javascript" src="js/plugins/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript" src="js/plugins/dropzone.js"></script>
+    
+    <script type="text/javascript" src="{{ asset('js/plugins/bootstrap-datepicker.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/select2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/dropzone.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/chart.js') }}"></script>`
     
     <script type="text/javascript">
+
     var data = {
       	labels: ["jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Ago", "set", "Out", "Nov", "Dez"],
       	datasets: [
@@ -234,6 +235,7 @@
       		// }
       	]
       };
+
       var pdata = [
       	{
       		value: {!! app(App\Http\Controllers\estatisticasController::class)->totalPacientes() !!},
@@ -247,7 +249,7 @@
       		highlight: "#FF5A5E",
       		label: "Tota de internamentos"
       	}
-      ]
+      ];
       
       var ctxl = $("#lineChartDemo").get(0).getContext("2d");
       var lineChart = new Chart(ctxl).Line(data);
@@ -255,8 +257,7 @@
       var ctxp = $("#pieChartDemo").get(0).getContext("2d");
       var pieChart = new Chart(ctxp).Pie(pdata);
 
-      var ctxb = $("#graficoDeBarra").get(0).getContext("2d");
-      var barChart = new Chart(ctxb).Bar(data);
+      
 
     </script>
     <!-- Google analytics script-->
@@ -370,6 +371,71 @@
       }
     });
   });
+</script>
+
+<script type="text/javascript">
+  var data = {
+    labels: ["jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Ago", "set", "Out", "Nov", "Dez"],
+    datasets: [
+      {
+        label: "My First dataset",
+        fillColor: "rgba(220,220,220,0.2)",
+        strokeColor: "rgba(220,220,220,1)",
+        pointColor: "rgba(220,220,220,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(220,220,220,1)",
+        data:  {!! app(App\Http\Controllers\estatisticasController::class)->totalRegistarConsulta() !!}
+      }
+
+    ]
+  };
+
+  var dataRadar = {
+    labels: ["jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Ago", "set", "Out", "Nov", "Dez"],
+    datasets: [
+      {
+        label: "My First dataset",
+        fillColor: "rgba(220,220,220,0.2)",
+        strokeColor: "rgba(220,220,220,1)",
+        pointColor: "rgba(220,220,220,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(220,220,220,1)",
+        data:  {!! app(App\Http\Controllers\estatisticasController::class)->totalRegistoInternamento() !!}
+      }
+
+    ]
+  };
+    
+  // var ctxl = $("#lineChartDemo").get(0).getContext("2d");
+  // var lineChart = new Chart(ctxl).Line(data);
+  
+  var ctxb = $("#barChartDemo").get(0).getContext("2d");
+  var barChart = new Chart(ctxb).Bar(data);
+  
+   var ctxr = $("#radarChartDemo").get(0).getContext("2d");
+  var radarChart = new Chart(ctxr).Radar(dataRadar);
+  
+  // var ctxpo = $("#polarChartDemo").get(0).getContext("2d");
+  // var polarChart = new Chart(ctxpo).PolarArea(pdata);
+  
+  // var ctxp = $("#pieChartDemo").get(0).getContext("2d");
+  // var pieChart = new Chart(ctxp).Pie(pdata);
+  
+  // var ctxd = $("#doughnutChartDemo").get(0).getContext("2d");
+  // var doughnutChart = new Chart(ctxd).Doughnut(pdata);
+</script>
+<!-- Google analytics script-->
+<script type="text/javascript">
+  if(document.location.hostname == 'pratikborsadiya.in') {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-72504830-1', 'auto');
+    ga('send', 'pageview');
+  }
 </script>
 
   </body>

@@ -51,7 +51,26 @@ class estatisticasController extends Controller
         foreach($meses as $index=> $meses){
             $data[$meses-1] = $pacientes[$index];
         }
-
         return json_encode($data);
    }
+
+
+   public function totalRegistoInternamento(){
+    $pacientes = internamento::select(DB::raw('COUNT(*) as contar'))
+                             ->whereYear('created_at', date('Y'))
+                             ->groupBy(DB::raw("Month(created_at)"))
+                             ->pluck('contar');
+     $meses = internamento::select(DB::raw("Month(created_at) as meses"))
+                             ->whereYear('created_at', date('Y'))
+                             ->groupBy(DB::raw("Month(created_at)"))
+                             ->pluck('meses');
+ 
+     $data = array(0,0,0,0,0,0,0,0,0,0,0,0);
+     foreach($meses as $index=> $meses){
+         $data[$meses-1] = $pacientes[$index];
+     }
+     return json_encode($data);
+}
+
+
 }

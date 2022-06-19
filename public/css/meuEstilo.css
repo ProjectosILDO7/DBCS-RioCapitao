@@ -1,0 +1,45 @@
+@page {
+    header: page-header;
+    footer: page-footer;
+    
+}
+body {
+    font-family: 12px 'Times New Roman', Times, serif;
+    
+}
+
+table.linhasAlternadas {
+    border-collapse: collapse; /* CSS2 */
+    background: #FFFFF0;
+    border: solid green 1px;
+}
+ 
+table.linhasAlternadas tr:nth-child(even) /* CSS3 */ {
+    background: #F0FFFF;
+}
+
+.chegarAoTopo{
+    margin-top: -20px;
+    color: blue;
+}
+.alinharAcima{
+    margin-top: -20px;
+    color: blue;
+}
+.tamanhoTopoRodape{
+    font-size: xx-small;
+    color: grey;
+    text-justify: auto;
+    text-align: right;
+    margin-top: 4px;
+}
+
+.tamanhoRodape{
+    font-size: xx-small;
+    color: grey;
+    text-justify: auto;
+    text-align: center;
+    margin-top: 4px;
+}
+
+</style>

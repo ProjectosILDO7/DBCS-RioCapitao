@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\consultasController;
+use App\Http\Controllers\ControllerPDF;
 use App\Http\Controllers\DisponibMedicoConsultaController;
 use App\Http\Controllers\especialidadeControlle;
 use App\Http\Controllers\homeController;
@@ -143,6 +144,7 @@ Route::middleware(['middleware'=>'auth'])->group(function(){
 
     //printRelatorio
     Route::get('/printRelatorio', [statusRelatorioController::class, 'index'])->name('printRelatorio');
+    Route::get('/imprimirRelatorio', [ControllerPDF::class, 'index'])->name('printRelatorioPDF');
     
 });
 

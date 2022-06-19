@@ -23,40 +23,41 @@
                Relatório
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="form-group col-4">
-                        <a href="#">
-                            <div class="card bg-secondary py-4 text-light text-center">
-                                Exportar consultas PDF
-                            </div>
-                        </a>
-                    </div>
-                    <div class="form-group col-4">
-                        <a href="#">
-                            <div class="card bg-primary py-4 text-light text-center">
-                                Exportar Médicos PDF
-                            </div>
-                        </a>
-                    </div>
-                    <div class="form-group col-4">
-                        <a href="#">
-                            <div class="card bg-success py-4 text-light text-center">
-                                Exportar pacientes PDF
+                <div class="row texte-center">
+                    
+                    <div class="form-group col-12">
+                        <a href="{{ route('printRelatorioPDF') }}">
+                            <div class="card bg-success py-2 text-light text-center">
+                                Relatório <i class="fa fa-file-pdf"></i>
                             </div>
                         </a>
                     </div>
 
-                    <div class="form-group col-12">
-                        <div class="tile">
-                            <h3 class="tile-title">Consultas</h3>
-                            <div class="embed-responsive embed-responsive-16by9">
-                              <canvas class="embed-responsive-item" id="graficoDeBarra"></canvas>
+                    <div class="form-group col-6">
+
+                            <div class="tile">
+                                <h3 class="tile-title">Consultas</h3>
+                                <div class="embed-responsive embed-responsive-16by9">
+                                  <canvas class="embed-responsive-item" id="barChartDemo"></canvas>
+                                </div>
                             </div>
-                        </div>
+
                     </div>
+
+                    <div class="form-group col-6">
+
+                        <div class="tile">
+                            <h3 class="tile-title">Radar de internamentos</h3>
+                            <div class="embed-responsive embed-responsive-16by9">
+                              <canvas class="embed-responsive-item" id="radarChartDemo"></canvas>
+                            </div>
+                          </div>
+
+                </div>
+
                 </div>
             </div>
         </div>
-       
 
 @endsection
+
