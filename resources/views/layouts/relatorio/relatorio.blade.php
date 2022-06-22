@@ -19,7 +19,7 @@
         </p>
       </htmlpageheader>
       <img class="app-sidebar__user-avatar" src="{{ asset('img/CoraçãoSaúde.png') }}" alt="User Image" width="10%" height="10%">
-        <p class="alinharAcima">Relatório <b>MENSAL</b> - Centro de saúde : "Rio Capitão"</p>
+        <p class="alinharAcima"><b>RELATÓRIO</b> - Centro de saúde : "Rio Capitão"</p>
         <hr class="chegarAoTopo"> 
 
         {{-- medicos
@@ -56,7 +56,7 @@ quartoIntern --}}
         <table border="1" width="40%" class="linhasAlternadas">
             <tr>
                 <td>pacientes</td>
-                <td><b>{{ $contaConsultas }}</b></td>
+                <td align="center"><b>{{ $contaConsultas }}</b></td>
             </tr>
         </table>
 
@@ -64,17 +64,17 @@ quartoIntern --}}
         <table border="1" width="40%" class="linhasAlternadas">
             <tr>
                 <td>pacientes</td>
-                <td><b>{{ $contaInternamento }}</b></td>
+                <td align="center"><b>{{ $contaInternamento }}</b></td>
             </tr>
         </table>
 
         <p><b>Quadro de médicos<b></p>
         <table border="1" width="100%" class="linhasAlternadas">
-            <tr>
-                <td>Nº</td>
-                <td>Nome</td>
-                <td>Telemove</td>
-                <td>E-mail</td>
+            <tr style="color: black">
+                <td><b>Nº</b></td>
+                <td><b>Nome</b></td>
+                <td><b>Telemove</b></td>
+                <td><b>E-mail</b></td>
             </tr>
             @foreach ($medicos as $med)
                 <tr>
@@ -88,9 +88,9 @@ quartoIntern --}}
 
         <p><b>Quadro de especialidade</b></p>
         <table border="1" width="100%" class="linhasAlternadas">
-            <tr>
-                <td>Nº</td>
-                <td>Especialidade</td>
+            <tr style="color: black">
+                <td><b>Nº</b></td>
+                <td><b>Especialidade</b></td>
             </tr>
             @foreach ($especialidades as $esp)
                 <tr>
@@ -103,19 +103,19 @@ quartoIntern --}}
 
         <p><b>Quadro de quartos para o internamento</b></p>
         <table border="1" width="100%" class="linhasAlternadas">
-            <tr>
-                <td>Nº</td>
-                <td>Nº do quarto</td>
-                <td>Total de camas existente</td>
-                <td>Piso</td>
+            <tr style="color: black">
+                <td><b>Nº</b></td>
+                <td align="center"><b>Nº do quarto</b></td>
+                <td align="center"><b>Total de camas existente por quarto</b></td>
+                <td align="center"><b>Piso</b></td>
             </tr>
 
             @foreach ($quartoIntern as $quarto)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $quarto->num_quart }}</td>
-                    <td>{{ $quarto->num_cama }}</td>
-                    <td>{{ $quarto->piso }}</td>
+                    <td align="center">{{ $quarto->num_quart }}</td>
+                    <td align="center">{{ $quarto->num_cama }}</td>
+                    <td align="center">{{ $quarto->piso }}</td>
                 </tr> 
             @endforeach
             

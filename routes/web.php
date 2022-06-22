@@ -116,7 +116,8 @@ Route::middleware(['middleware'=>'auth'])->group(function(){
     Route::get('/marcarDisponib', [DisponibMedicoConsultaController::class, 'create'])->name('formDisponibilidade');
     Route::post('/addDisponibilidade', [DisponibMedicoConsultaController::class, 'store'])->name('addDisponibilidade');
     Route::post('/delDisponib/{id}', [DisponibMedicoConsultaController::class, 'destroy'])->name('dDelete');
-    Route::get('/infoDisponib/{id}', [DisponibMedicoConsultaController::class, 'infoDisponibilidade'])->name('dInfo');
+    Route::get('/verMeusPacientes', [DisponibMedicoConsultaController::class, 'meusPacientes'])->name('meusPacientes');
+
 
     //consultas
     Route::get('/listaDeConsultas', [consultasController::class, 'index'])->name('listConsulta');

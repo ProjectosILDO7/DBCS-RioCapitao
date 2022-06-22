@@ -26,7 +26,6 @@
             <td>{{ $d->especialidade }}</td>
             <td>
                 <a class="mr-2" href="{{ route('dDeleteConfirm', $d->id) }}"><i class="fa fa-trash text-danger"></i></a>
-                <a class="mr-2" href="{{ route('dInfo', $d->id) }}"><i class="fa fa-list text-success"></i></a>
             </td>
           </tr>
         @endforeach

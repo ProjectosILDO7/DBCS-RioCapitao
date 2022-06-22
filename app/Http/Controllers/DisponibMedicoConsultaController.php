@@ -67,6 +67,10 @@ class DisponibMedicoConsultaController extends Controller
         //
     }
 
+    public function meusPacientes(){
+        dd('meusPacientes');
+    }
+
     
     public function edit(disponibMedicoConsulta $disponibMedicoConsulta)
     {
