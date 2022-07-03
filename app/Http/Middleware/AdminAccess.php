@@ -16,7 +16,7 @@ class AdminAccess
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->check() AND auth()->user()->admin){
+        if(auth()->check() AND auth()->user()->admin==1){
             return $next($request);
         }
         return redirect()->route('login');

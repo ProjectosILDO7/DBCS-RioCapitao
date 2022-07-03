@@ -16,7 +16,7 @@ class MedicoAccess
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->check() AND auth()->user()->medico){
+        if(auth()->check() AND auth()->user()->admin==2){
             return $next($request);
         }
         return redirect()->route('login');

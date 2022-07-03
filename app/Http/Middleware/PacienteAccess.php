@@ -16,7 +16,7 @@ class PacienteAccess
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->check() AND auth()->user()->paciente){
+        if(auth()->check() AND auth()->user()->admin==3){
             return $next($request);
         }
         return redirect()->route('login');
