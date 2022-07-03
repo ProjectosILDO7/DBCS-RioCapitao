@@ -13,6 +13,7 @@ use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\QuartoDeInternamentoController;
 use App\Http\Controllers\statusRelatorioController;
+use App\Models\disponibMedicoConsulta;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -117,6 +118,9 @@ Route::middleware(['middleware'=>'auth'])->group(function(){
     Route::post('/addDisponibilidade', [DisponibMedicoConsultaController::class, 'store'])->name('addDisponibilidade');
     Route::post('/delDisponib/{id}', [DisponibMedicoConsultaController::class, 'destroy'])->name('dDelete');
     Route::get('/verMeusPacientes', [DisponibMedicoConsultaController::class, 'meusPacientes'])->name('meusPacientes');
+    Route::get('/prescMedica/{paciente}', [DisponibMedicoConsultaController::class, 'prescricao'])->name('prescMedica');
+    Route::post('/postPrescricaoMedica', [DisponibMedicoConsultaController::class, 'savePrescricao'])->name('postPrescricao');
+    Route::get('/verPrescricaoMedica/{ver}', [DisponibMedicoConsultaController::class, 'verPresc'])->name('prescMedicaVer');
 
 
     //consultas

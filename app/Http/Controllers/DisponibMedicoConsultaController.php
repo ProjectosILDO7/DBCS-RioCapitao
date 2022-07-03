@@ -3,11 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\disponibilidadeMedicaConsultRequest;
+use App\Http\Requests\prescricaoMedicaRequest;
 use App\Models\disponibMedicoConsulta;
 use App\Models\medico;
+use App\Models\paciente;
+use App\Models\prescricaoMedica;
+use App\Models\registarConsulta;
 use App\Models\User;
 use App\repositorios\disponibilidadeConsulta\contratos\disponibilidadeInterface;
+use Carbon\Carbon;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class DisponibMedicoConsultaController extends Controller
 {
@@ -68,7 +76,11 @@ class DisponibMedicoConsultaController extends Controller
     }
 
     public function meusPacientes(){
-        dd('meusPacientes');
+        $idUser=Auth()->user()->id;
+        $medicoID=medico::where('user_id', $idUser)->first();
+        $idMedico=$medicoID->id;
+        $meusPacientes=registarConsulta::where('disponib_medica_id', $idMedico)->get();
+        return view('layouts.medico.pacientesMedicos', compact('meusPacientes'));
     }
 
     
@@ -77,11 +89,33 @@ class DisponibMedicoConsultaController extends Controller
         //
     }
 
+    public function prescricao($paciente){
+        $paciente = paciente::where('nome', $paciente)->first();
+        $dataNasc=Carbon::parse($paciente->data_nasc)->format("d-m-Y");
+        return view('layouts.medico.prescricao', compact('paciente', 'dataNasc'));
+    }
+
+    public function savePrescricao(prescricaoMedicaRequest $request){
+        
+        prescricaoMedica::create($request->all());
+        return redirect()->back()->with('alert', 'Diagnóstico salvo com sucesso!');
+    }
+
+    public function verPresc($paciente){
+        $detalhesPrescricao=prescricaoMedica::where('paciente', $paciente)->first();
+
+        $dataDaPrescricao=Carbon::parse($detalhesPrescricao->created_at)->format("d-m-Y H:i:s");
+        $pdf = PDF::loadView('/layouts.relatorio.detalhesPrescricaoMedica', compact('detalhesPrescricao', 'dataDaPrescricao'));
+        return $pdf->stream('prescriçãoMedica.pdf');
+    }
+
    
     public function update(Request $request, disponibMedicoConsulta $disponibMedicoConsulta)
     {
         //
     }
+
+    
 
     public function confirmDelete($id)
     {
