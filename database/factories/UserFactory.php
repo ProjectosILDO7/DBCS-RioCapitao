@@ -17,11 +17,11 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'admin'=>rand(1,3), //nivel 1 = admin; nível 2 = médico; nível 3 = paciente 
+            'admin'=>"1", //nivel 1 = admin; nível 2 = médico; nível 3 = paciente 
             'tel'=>'921923232',
             'email_verified_at' => now(),
             'password' => bcrypt('adminBenilda'), // password
-            'remember_token' => Str::random(10),
+            'remember_token' => Str::random(1),
         ];
     }
 
